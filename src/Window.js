@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const StyledWindow = styled.div`
     position: absolute;
-    width: 400px;
-    height: 300px;
+    min-width: 100px;
+    min-height: 80px;
     & .window-inner {
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         border-radius: 10px;
@@ -69,12 +69,32 @@ export default function Desktop() {
         e.preventDefault();
     };
 
-    const stopMove = e => {
+    const stopMove = () => {
         setMoving(false);
         document.removeEventListener('mousemove', duringMove);
         document.removeEventListener('mouseup', stopMove);
+    };
+
+    const startResize = e => {
+        if (e.button === 0) {
+            window.addEventListener('mousemove', duringResize);
+            window.addEventListener('mouseup', stopResize);
+            document.body.style.cursor = 'nwse-resize';
+        }
+    };
+
+    const duringResize = e => {
+        const width = e.pageX - winPosition[0];
+        const height = e.pageY - winPosition[1];
+        setWinSize([width, height]);
         e.stopPropagation();
         e.preventDefault();
+    };
+
+    const stopResize = () => {
+        window.removeEventListener('mousemove', duringResize);
+        window.removeEventListener('mouseup', stopResize);
+        document.body.style.cursor = 'default';
     };
 
     return (
@@ -92,7 +112,7 @@ export default function Desktop() {
                     onMouseMove={e => updateRelPosition(e)}
                 ></StyledTitleBar>
             </div>
-            <StyledResize></StyledResize>
+            <StyledResize onMouseDown={e => startResize(e)} />
         </StyledWindow>
     );
 }
