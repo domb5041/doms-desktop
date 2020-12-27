@@ -1,4 +1,6 @@
+import React from 'react'
+import Desktop from './Desktop'
 
 export default function App() {
-    return <div>hello world</div>;
+    return <div><Desktop/></div>;
 }
