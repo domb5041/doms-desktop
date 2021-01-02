@@ -25,6 +25,46 @@ const StyledTitleBar = styled.div`
     height: 30px;
 `;
 
+const StyledResizeNN = styled.div`
+    background: blue;
+    position: absolute;
+    cursor: ns-resize;
+    height: 6px;
+    top: 0;
+    left: 6px;
+    right: 6px;
+`;
+
+const StyledResizeWW = styled.div`
+    background: blue;
+    position: absolute;
+    cursor: ew-resize;
+    width: 6px;
+    top: 6px;
+    left: 0;
+    bottom: 6px;
+`;
+
+const StyledResizeEE = styled.div`
+    background: blue;
+    position: absolute;
+    cursor: ew-resize;
+    width: 6px;
+    top: 6px;
+    right: 0;
+    bottom: 6px;
+`;
+
+const StyledResizeSS = styled.div`
+    background: blue;
+    position: absolute;
+    cursor: ns-resize;
+    height: 6px;
+    bottom: 0;
+    left: 6px;
+    right: 6px;
+`;
+
 const StyledResizeNW = styled.div`
     background: red;
     position: absolute;
@@ -203,6 +243,94 @@ export default function Desktop() {
         document.body.style.cursor = 'default';
     };
 
+    const startRepositionNN = e => {
+        if (e.button === 0) {
+            window.addEventListener('mousemove', duringRepositionNN);
+            window.addEventListener('mouseup', stopRepositionNN);
+            document.body.style.cursor = 'ns-resize';
+        }
+    };
+
+    const duringRepositionNN = e => {
+        const newPosition = { ...winPosition };
+        newPosition.top = e.pageY;
+        setWinPosition(newPosition);
+        e.stopPropagation();
+        e.preventDefault();
+    };
+
+    const stopRepositionNN = () => {
+        window.removeEventListener('mousemove', duringRepositionNN);
+        window.removeEventListener('mouseup', stopRepositionNN);
+        document.body.style.cursor = 'default';
+    };
+
+    const startRepositionSS = e => {
+        if (e.button === 0) {
+            window.addEventListener('mousemove', duringRepositionSS);
+            window.addEventListener('mouseup', stopRepositionSS);
+            document.body.style.cursor = 'ns-resize';
+        }
+    };
+
+    const duringRepositionSS = e => {
+        const newPosition = { ...winPosition };
+        newPosition.height = e.pageY;
+        setWinPosition(newPosition);
+        e.stopPropagation();
+        e.preventDefault();
+    };
+
+    const stopRepositionSS = () => {
+        window.removeEventListener('mousemove', duringRepositionSS);
+        window.removeEventListener('mouseup', stopRepositionSS);
+        document.body.style.cursor = 'default';
+    };
+
+    const startRepositionEE = e => {
+        if (e.button === 0) {
+            window.addEventListener('mousemove', duringRepositionEE);
+            window.addEventListener('mouseup', stopRepositionEE);
+            document.body.style.cursor = 'ew-resize';
+        }
+    };
+
+    const duringRepositionEE = e => {
+        const newPosition = { ...winPosition };
+        newPosition.width = e.pageX;
+        setWinPosition(newPosition);
+        e.stopPropagation();
+        e.preventDefault();
+    };
+
+    const stopRepositionEE = () => {
+        window.removeEventListener('mousemove', duringRepositionEE);
+        window.removeEventListener('mouseup', stopRepositionEE);
+        document.body.style.cursor = 'default';
+    };
+
+    const startRepositionWW = e => {
+        if (e.button === 0) {
+            window.addEventListener('mousemove', duringRepositionWW);
+            window.addEventListener('mouseup', stopRepositionWW);
+            document.body.style.cursor = 'ew-resize';
+        }
+    };
+
+    const duringRepositionWW = e => {
+        const newPosition = { ...winPosition };
+        newPosition.left = e.pageX;
+        setWinPosition(newPosition);
+        e.stopPropagation();
+        e.preventDefault();
+    };
+
+    const stopRepositionWW = () => {
+        window.removeEventListener('mousemove', duringRepositionWW);
+        window.removeEventListener('mouseup', stopRepositionWW);
+        document.body.style.cursor = 'default';
+    };
+
     return (
         <StyledWindow
             style={{
@@ -218,10 +346,14 @@ export default function Desktop() {
                     onMouseMove={e => updateRelPosition(e)}
                 ></StyledTitleBar>
             </div>
+            <StyledResizeWW onMouseDown={e => startRepositionWW(e)} />
             <StyledResizeNW onMouseDown={e => startRepositionNW(e)} />
+            <StyledResizeNN onMouseDown={e => startRepositionNN(e)} />
             <StyledResizeNE onMouseDown={e => startRepositionNE(e)} />
             <StyledResizeSW onMouseDown={e => startRepositionSW(e)} />
+            <StyledResizeSS onMouseDown={e => startRepositionSS(e)} />
             <StyledResizeSE onMouseDown={e => startRepositionSE(e)} />
+            <StyledResizeEE onMouseDown={e => startRepositionEE(e)} />
         </StyledWindow>
     );
 }
