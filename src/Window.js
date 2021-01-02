@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+const rePositionBorder = 8;
+
 const StyledWindow = styled.div`
     position: absolute;
     min-width: 100px;
@@ -12,10 +14,10 @@ const StyledWindow = styled.div`
         border: 2px solid black;
         background: white;
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        top: ${rePositionBorder / 2 - 2}px;
+        left: ${rePositionBorder / 2 - 2}px;
+        right: ${rePositionBorder / 2 - 2}px;
+        bottom: ${rePositionBorder / 2 - 2}px;
     }
 `;
 
@@ -29,77 +31,85 @@ const StyledResizeNN = styled.div`
     background: blue;
     position: absolute;
     cursor: ns-resize;
-    height: 6px;
+    height: ${rePositionBorder}px;
     top: 0;
-    left: 6px;
-    right: 6px;
+    left: ${rePositionBorder}px;
+    right: ${rePositionBorder}px;
+    opacity: 0;
 `;
 
 const StyledResizeWW = styled.div`
     background: blue;
     position: absolute;
     cursor: ew-resize;
-    width: 6px;
-    top: 6px;
+    width: ${rePositionBorder}px;
+    top: ${rePositionBorder}px;
     left: 0;
-    bottom: 6px;
+    bottom: ${rePositionBorder}px;
+    opacity: 0;
 `;
 
 const StyledResizeEE = styled.div`
     background: blue;
     position: absolute;
     cursor: ew-resize;
-    width: 6px;
-    top: 6px;
+    width: ${rePositionBorder}px;
+    top: ${rePositionBorder}px;
     right: 0;
-    bottom: 6px;
+    bottom: ${rePositionBorder}px;
+    opacity: 0;
 `;
 
 const StyledResizeSS = styled.div`
     background: blue;
     position: absolute;
     cursor: ns-resize;
-    height: 6px;
+    height: ${rePositionBorder}px;
     bottom: 0;
-    left: 6px;
-    right: 6px;
+    left: ${rePositionBorder}px;
+    right: ${rePositionBorder}px;
+    opacity: 0;
 `;
 
 const StyledResizeNW = styled.div`
     background: red;
     position: absolute;
     cursor: nwse-resize;
-    width: 6px;
-    height: 6px;
+    width: ${rePositionBorder}px;
+    height: ${rePositionBorder}px;
     top: 0;
     left: 0;
+    opacity: 0;
 `;
 const StyledResizeNE = styled.div`
     background: red;
     position: absolute;
     cursor: nesw-resize;
-    width: 6px;
-    height: 6px;
+    width: ${rePositionBorder}px;
+    height: ${rePositionBorder}px;
     top: 0;
     right: 0;
+    opacity: 0;
 `;
 const StyledResizeSW = styled.div`
     background: red;
     position: absolute;
     cursor: nesw-resize;
-    width: 6px;
-    height: 6px;
+    width: ${rePositionBorder}px;
+    height: ${rePositionBorder}px;
     bottom: 0;
     left: 0;
+    opacity: 0;
 `;
 const StyledResizeSE = styled.div`
     background: red;
     position: absolute;
     cursor: nwse-resize;
-    width: 6px;
-    height: 6px;
+    width: ${rePositionBorder}px;
+    height: ${rePositionBorder}px;
     bottom: 0;
     right: 0;
+    opacity: 0;
 `;
 
 export default function Desktop() {
