@@ -63,109 +63,165 @@ const StyledResizeSE = styled.div`
 `;
 
 export default function Desktop() {
-    const [winSize, setWinSize] = useState([400, 300]);
-    const [winPosition, setWinPosition] = useState([10, 10]);
     const [relPosition, setRelPosition] = useState([0, 0]);
     const [moving, setMoving] = useState(false);
+    const [winPosition, setWinPosition] = useState({
+        top: 10,
+        left: 10,
+        width: 400,
+        height: 300,
+    });
 
     const updateRelPosition = e => {
         if (!moving) {
-            const relX = e.pageX - winPosition[0];
-            const relY = e.pageY - winPosition[1];
+            const relX = e.pageX - winPosition.left;
+            const relY = e.pageY - winPosition.top;
             setRelPosition([relX, relY]);
             e.stopPropagation();
             e.preventDefault();
         }
     };
 
-    const startMove = e => {
+    const startRepositionALL = e => {
         if (e.button === 0) {
             setMoving(true);
-            document.addEventListener('mousemove', duringMove);
-            document.addEventListener('mouseup', stopMove);
+            document.addEventListener('mousemove', duringRepositionALL);
+            document.addEventListener('mouseup', stopRepositionALL);
             e.stopPropagation();
             e.preventDefault();
         }
     };
 
-    const duringMove = e => {
-        const left = e.pageX - relPosition[0];
-        const top = e.pageY - relPosition[1];
-        const width = e.pageX - relPosition[0] + winSize[0] - winPosition[0];
-        const height = e.pageY - relPosition[1] + winSize[1] - winPosition[1];
-        setWinPosition([left, top]);
-        setWinSize([width, height]);
+    const duringRepositionALL = e => {
+        const newPosition = { ...winPosition };
+        newPosition.left = e.pageX - relPosition[0];
+        newPosition.top = e.pageY - relPosition[1];
+        newPosition.width =
+            e.pageX - relPosition[0] + winPosition.width - winPosition.left;
+        newPosition.height =
+            e.pageY - relPosition[1] + winPosition.height - winPosition.top;
+        setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
 
-    const stopMove = () => {
+    const stopRepositionALL = () => {
         setMoving(false);
-        document.removeEventListener('mousemove', duringMove);
-        document.removeEventListener('mouseup', stopMove);
+        document.removeEventListener('mousemove', duringRepositionALL);
+        document.removeEventListener('mouseup', stopRepositionALL);
     };
 
-    const startResizeSE = e => {
+    const startRepositionSE = e => {
         if (e.button === 0) {
-            window.addEventListener('mousemove', duringResizeSE);
-            window.addEventListener('mouseup', stopResizeSE);
+            window.addEventListener('mousemove', duringRepositionSE);
+            window.addEventListener('mouseup', stopRepositionSE);
             document.body.style.cursor = 'nwse-resize';
         }
     };
 
-    const duringResizeSE = e => {
-        const width = e.pageX;
-        const height = e.pageY;
-        setWinSize([width, height]);
+    const duringRepositionSE = e => {
+        const newPosition = { ...winPosition };
+        newPosition.width = e.pageX;
+        newPosition.height = e.pageY;
+        setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
 
-    const stopResizeSE = () => {
-        window.removeEventListener('mousemove', duringResizeSE);
-        window.removeEventListener('mouseup', stopResizeSE);
+    const stopRepositionSE = () => {
+        window.removeEventListener('mousemove', duringRepositionSE);
+        window.removeEventListener('mouseup', stopRepositionSE);
         document.body.style.cursor = 'default';
     };
 
-    const startResizeNW = e => {
+    const startRepositionNW = e => {
         if (e.button === 0) {
-            window.addEventListener('mousemove', duringResizeNW);
-            window.addEventListener('mouseup', stopResizeNW);
+            window.addEventListener('mousemove', duringRepositionNW);
+            window.addEventListener('mouseup', stopRepositionNW);
             document.body.style.cursor = 'nwse-resize';
         }
     };
 
-    const duringResizeNW = e => {
-        setWinPosition([e.pageX, e.pageY]);
+    const duringRepositionNW = e => {
+        const newPosition = { ...winPosition };
+        newPosition.left = e.pageX;
+        newPosition.top = e.pageY;
+        setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
 
-    const stopResizeNW = () => {
-        window.removeEventListener('mousemove', duringResizeNW);
-        window.removeEventListener('mouseup', stopResizeNW);
+    const stopRepositionNW = () => {
+        window.removeEventListener('mousemove', duringRepositionNW);
+        window.removeEventListener('mouseup', stopRepositionNW);
+        document.body.style.cursor = 'default';
+    };
+
+    const startRepositionNE = e => {
+        if (e.button === 0) {
+            window.addEventListener('mousemove', duringRepositionNE);
+            window.addEventListener('mouseup', stopRepositionNE);
+            document.body.style.cursor = 'nesw-resize';
+        }
+    };
+
+    const duringRepositionNE = e => {
+        const newPosition = { ...winPosition };
+        newPosition.width = e.pageX;
+        newPosition.top = e.pageY;
+        setWinPosition(newPosition);
+        e.stopPropagation();
+        e.preventDefault();
+    };
+
+    const stopRepositionNE = () => {
+        window.removeEventListener('mousemove', duringRepositionNE);
+        window.removeEventListener('mouseup', stopRepositionNE);
+        document.body.style.cursor = 'default';
+    };
+
+    const startRepositionSW = e => {
+        if (e.button === 0) {
+            window.addEventListener('mousemove', duringRepositionSW);
+            window.addEventListener('mouseup', stopRepositionSW);
+            document.body.style.cursor = 'nesw-resize';
+        }
+    };
+
+    const duringRepositionSW = e => {
+        const newPosition = { ...winPosition };
+        newPosition.left = e.pageX;
+        newPosition.height = e.pageY;
+        setWinPosition(newPosition);
+        e.stopPropagation();
+        e.preventDefault();
+    };
+
+    const stopRepositionSW = () => {
+        window.removeEventListener('mousemove', duringRepositionSW);
+        window.removeEventListener('mouseup', stopRepositionSW);
         document.body.style.cursor = 'default';
     };
 
     return (
         <StyledWindow
             style={{
-                left: winPosition[0],
-                top: winPosition[1],
-                right: `calc(100% - ${winSize[0]}px)`,
-                bottom: `calc(100% - ${winSize[1]}px)`,
+                left: winPosition.left,
+                top: winPosition.top,
+                right: `calc(100% - ${winPosition.width}px)`,
+                bottom: `calc(100% - ${winPosition.height}px)`,
             }}
         >
             <div className='window-inner'>
                 <StyledTitleBar
-                    onMouseDown={e => startMove(e)}
+                    onMouseDown={e => startRepositionALL(e)}
                     onMouseMove={e => updateRelPosition(e)}
                 ></StyledTitleBar>
             </div>
-            <StyledResizeNW onMouseDown={e => startResizeNW(e)} />
-            {/* <StyledResizeNE onMouseDown={e => startResizeNE(e)} /> */}
-            {/* <StyledResizeSW onMouseDown={e => startResizeSW(e)} /> */}
-            <StyledResizeSE onMouseDown={e => startResizeSE(e)} />
+            <StyledResizeNW onMouseDown={e => startRepositionNW(e)} />
+            <StyledResizeNE onMouseDown={e => startRepositionNE(e)} />
+            <StyledResizeSW onMouseDown={e => startRepositionSW(e)} />
+            <StyledResizeSE onMouseDown={e => startRepositionSE(e)} />
         </StyledWindow>
     );
 }
