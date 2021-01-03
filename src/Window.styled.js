@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const borderWeight = 8;
+const borderWeight = 7;
 
 export const StyledWindow = styled.div`
     position: absolute;
@@ -30,56 +30,56 @@ export const StyledRepositionBorder = styled.div`
     position: absolute;
     opacity: 0;
     background-color: red;
-    &.direction-ww {
+    &#reposition-ww {
         cursor: ew-resize;
         width: ${borderWeight}px;
         top: ${borderWeight}px;
         left: 0;
         bottom: ${borderWeight}px;
     }
-    &.direction-ee {
+    &#reposition-ee {
         cursor: ew-resize;
         width: ${borderWeight}px;
         top: ${borderWeight}px;
         right: 0;
         bottom: ${borderWeight}px;
     }
-    &.direction-nn {
+    &#reposition-nn {
         cursor: ns-resize;
         height: ${borderWeight}px;
         top: 0;
         left: ${borderWeight}px;
         right: ${borderWeight}px;
     }
-    &.direction-ss {
+    &#reposition-ss {
         cursor: ns-resize;
         height: ${borderWeight}px;
         bottom: 0;
         left: ${borderWeight}px;
         right: ${borderWeight}px;
     }
-    &.direction-ne {
+    &#reposition-ne {
         cursor: nesw-resize;
         width: ${borderWeight}px;
         height: ${borderWeight}px;
         top: 0;
         right: 0;
     }
-    &.direction-se {
+    &#reposition-se {
         cursor: nwse-resize;
         width: ${borderWeight}px;
         height: ${borderWeight}px;
         bottom: 0;
         right: 0;
     }
-    &.direction-sw {
+    &#reposition-sw {
         cursor: nesw-resize;
         width: ${borderWeight}px;
         height: ${borderWeight}px;
         bottom: 0;
         left: 0;
     }
-    &.direction-nw {
+    &#reposition-nw {
         cursor: nwse-resize;
         width: ${borderWeight}px;
         height: ${borderWeight}px;

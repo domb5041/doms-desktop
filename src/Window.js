@@ -15,10 +15,11 @@ export default function Desktop() {
 
     let duringRepositionListener, stopRepositionListener;
 
-    const startReposition = (e, duringFn, cursor) => {
+    const startReposition = (e, duringFn, cursor, id) => {
         if (e.button === 0) {
-            const relX = e.pageX - winPosition.left;
-            const relY = e.pageY - winPosition.top;
+            const element = document.getElementById(id);
+            const relX = e.pageX - element.getBoundingClientRect().left;
+            const relY = e.pageY - element.getBoundingClientRect().top;
             stopRepositionListener = () => {
                 stopReposition(duringFn);
             };
@@ -126,58 +127,107 @@ export default function Desktop() {
                 right: `calc(100% - ${winPosition.width}px)`,
                 bottom: `calc(100% - ${winPosition.height}px)`,
             }}
+            id='window-container'
         >
             <div className='window-inner'>
                 <StyledTitleBar
-                    onMouseDown={e => startReposition(e, duringRepositionALL)}
+                    id='reposition-all'
+                    onMouseDown={e =>
+                        startReposition(
+                            e,
+                            duringRepositionALL,
+                            'default',
+                            'window-container'
+                        )
+                    }
                 ></StyledTitleBar>
             </div>
             <StyledRepositionBorder
-                className='direction-ww'
+                id='reposition-ww'
                 onMouseDown={e =>
-                    startReposition(e, duringRepositionWW, 'ew-resize')
+                    startReposition(
+                        e,
+                        duringRepositionWW,
+                        'ew-resize',
+                        'reposition-ww'
+                    )
                 }
             />
             <StyledRepositionBorder
-                className='direction-nw'
+                id='reposition-nw'
                 onMouseDown={e =>
-                    startReposition(e, duringRepositionNW, 'nwse-resize')
+                    startReposition(
+                        e,
+                        duringRepositionNW,
+                        'nwse-resize',
+                        'reposition-nw'
+                    )
                 }
             />
             <StyledRepositionBorder
-                className='direction-nn'
+                id='reposition-nn'
                 onMouseDown={e =>
-                    startReposition(e, duringRepositionNN, 'ns-resize')
+                    startReposition(
+                        e,
+                        duringRepositionNN,
+                        'ns-resize',
+                        'reposition-nn'
+                    )
                 }
             />
             <StyledRepositionBorder
-                className='direction-ne'
+                id='reposition-ne'
                 onMouseDown={e =>
-                    startReposition(e, duringRepositionNE, 'nesw-resize')
+                    startReposition(
+                        e,
+                        duringRepositionNE,
+                        'nesw-resize',
+                        'reposition-ne'
+                    )
                 }
             />
             <StyledRepositionBorder
-                className='direction-sw'
+                id='reposition-sw'
                 onMouseDown={e =>
-                    startReposition(e, duringRepositionSW, 'nesw-resize')
+                    startReposition(
+                        e,
+                        duringRepositionSW,
+                        'nesw-resize',
+                        'reposition-sw'
+                    )
                 }
             />
             <StyledRepositionBorder
-                className='direction-ss'
+                id='reposition-ss'
                 onMouseDown={e =>
-                    startReposition(e, duringRepositionSS, 'ns-resize')
+                    startReposition(
+                        e,
+                        duringRepositionSS,
+                        'ns-resize',
+                        'reposition-ss'
+                    )
                 }
             />
             <StyledRepositionBorder
-                className='direction-se'
+                id='reposition-se'
                 onMouseDown={e =>
-                    startReposition(e, duringRepositionSE, 'nwse-resize')
+                    startReposition(
+                        e,
+                        duringRepositionSE,
+                        'nwse-resize',
+                        'reposition-se'
+                    )
                 }
             />
             <StyledRepositionBorder
-                className='direction-ee'
+                id='reposition-ee'
                 onMouseDown={e =>
-                    startReposition(e, duringRepositionEE, 'ew-resize')
+                    startReposition(
+                        e,
+                        duringRepositionEE,
+                        'ew-resize',
+                        'reposition-ee'
+                    )
                 }
             />
         </StyledWindow>
