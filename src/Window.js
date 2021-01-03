@@ -15,13 +15,6 @@ export default function Desktop() {
 
     let duringRepositionListener, stopRepositionListener;
 
-    const mouseInsideWindow = e => {
-        const insideWindowX = e.pageX < window.innerWidth && e.pageX > 0;
-        const insideWindowY = e.pageY < window.innerHeight && e.pageY > 0;
-        if (insideWindowX && insideWindowY) return true;
-        return false;
-    };
-
     const startReposition = (e, duringFn, cursor, id) => {
         if (e.button === 0) {
             const element = document.getElementById(id);
@@ -47,77 +40,69 @@ export default function Desktop() {
             e.pageX - relX + winPosition.width - winPosition.left;
         newPosition.height =
             e.pageY - relY + winPosition.height - winPosition.top;
-        if (mouseInsideWindow(e)) setWinPosition(newPosition);
-        e.stopPropagation();
-        e.preventDefault();
+        handleSetReposition(e, newPosition);
     };
 
     const duringRepositionSE = e => {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
         newPosition.height = e.pageY;
-        if (mouseInsideWindow(e)) setWinPosition(newPosition);
-        e.stopPropagation();
-        e.preventDefault();
+        handleSetReposition(e, newPosition);
     };
 
     const duringRepositionNW = e => {
         const newPosition = { ...winPosition };
         newPosition.left = e.pageX;
         newPosition.top = e.pageY;
-        if (mouseInsideWindow(e)) setWinPosition(newPosition);
-        e.stopPropagation();
-        e.preventDefault();
+        handleSetReposition(e, newPosition);
     };
 
     const duringRepositionNE = e => {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
         newPosition.top = e.pageY;
-        if (mouseInsideWindow(e)) setWinPosition(newPosition);
-        e.stopPropagation();
-        e.preventDefault();
+        handleSetReposition(e, newPosition);
     };
 
     const duringRepositionSW = e => {
         const newPosition = { ...winPosition };
         newPosition.left = e.pageX;
         newPosition.height = e.pageY;
-        if (mouseInsideWindow(e)) setWinPosition(newPosition);
-        e.stopPropagation();
-        e.preventDefault();
+        handleSetReposition(e, newPosition);
     };
 
     const duringRepositionNN = e => {
         const newPosition = { ...winPosition };
         newPosition.top = e.pageY;
-        if (mouseInsideWindow(e)) setWinPosition(newPosition);
-        e.stopPropagation();
-        e.preventDefault();
+        handleSetReposition(e, newPosition);
     };
 
     const duringRepositionSS = e => {
         const newPosition = { ...winPosition };
         newPosition.height = e.pageY;
-        if (mouseInsideWindow(e)) setWinPosition(newPosition);
-        e.stopPropagation();
-        e.preventDefault();
+        handleSetReposition(e, newPosition);
     };
 
     const duringRepositionEE = e => {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
-        if (mouseInsideWindow(e)) setWinPosition(newPosition);
-        e.stopPropagation();
-        e.preventDefault();
+        handleSetReposition(e, newPosition);
     };
 
     const duringRepositionWW = e => {
         const newPosition = { ...winPosition };
         newPosition.left = e.pageX;
-        if (mouseInsideWindow(e)) setWinPosition(newPosition);
-        e.stopPropagation();
-        e.preventDefault();
+        handleSetReposition(e, newPosition);
+    };
+
+    const handleSetReposition = (e, newPosition) => {
+        const insideWindowX = e.pageX < window.innerWidth && e.pageX > 0;
+        const insideWindowY = e.pageY < window.innerHeight && e.pageY > 0;
+        if (insideWindowX && insideWindowY) {
+            setWinPosition(newPosition);
+            e.stopPropagation();
+            e.preventDefault();
+        }
     };
 
     const stopReposition = () => {
