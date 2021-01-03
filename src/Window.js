@@ -40,7 +40,9 @@ export default function Desktop() {
             e.pageX - relX + winPosition.width - winPosition.left;
         newPosition.height =
             e.pageY - relY + winPosition.height - winPosition.top;
-        setWinPosition(newPosition);
+        const insideWindowX = e.pageX < window.innerWidth && e.pageX > 0;
+        const insideWindowY = e.pageY < window.innerHeight && e.pageY > 0;
+        if (insideWindowX && insideWindowY) setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
@@ -119,16 +121,15 @@ export default function Desktop() {
         document.body.style.cursor = 'default';
     };
 
+    const winPositionStyle = {
+        left: winPosition.left,
+        top: winPosition.top,
+        right: `calc(100% - ${winPosition.width}px)`,
+        bottom: `calc(100% - ${winPosition.height}px)`,
+    };
+
     return (
-        <StyledWindow
-            style={{
-                left: winPosition.left,
-                top: winPosition.top,
-                right: `calc(100% - ${winPosition.width}px)`,
-                bottom: `calc(100% - ${winPosition.height}px)`,
-            }}
-            id='window-container'
-        >
+        <StyledWindow style={winPositionStyle} id='window-container'>
             <div className='window-inner'>
                 <StyledTitleBar
                     id='reposition-all'
