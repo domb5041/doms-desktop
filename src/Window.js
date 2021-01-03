@@ -1,116 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-
-const rePositionBorder = 8;
-
-const StyledWindow = styled.div`
-    position: absolute;
-    min-width: 100px;
-    min-height: 80px;
-    & .window-inner {
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-        overflow: hidden;
-        border: 2px solid black;
-        background: white;
-        position: absolute;
-        top: ${rePositionBorder / 2 - 2}px;
-        left: ${rePositionBorder / 2 - 2}px;
-        right: ${rePositionBorder / 2 - 2}px;
-        bottom: ${rePositionBorder / 2 - 2}px;
-    }
-`;
-
-const StyledTitleBar = styled.div`
-    border-bottom: 2px solid black;
-    width: 100%;
-    height: 30px;
-`;
-
-const StyledResizeNN = styled.div`
-    background: blue;
-    position: absolute;
-    cursor: ns-resize;
-    height: ${rePositionBorder}px;
-    top: 0;
-    left: ${rePositionBorder}px;
-    right: ${rePositionBorder}px;
-    opacity: 0;
-`;
-
-const StyledResizeWW = styled.div`
-    background: blue;
-    position: absolute;
-    cursor: ew-resize;
-    width: ${rePositionBorder}px;
-    top: ${rePositionBorder}px;
-    left: 0;
-    bottom: ${rePositionBorder}px;
-    opacity: 0;
-`;
-
-const StyledResizeEE = styled.div`
-    background: blue;
-    position: absolute;
-    cursor: ew-resize;
-    width: ${rePositionBorder}px;
-    top: ${rePositionBorder}px;
-    right: 0;
-    bottom: ${rePositionBorder}px;
-    opacity: 0;
-`;
-
-const StyledResizeSS = styled.div`
-    background: blue;
-    position: absolute;
-    cursor: ns-resize;
-    height: ${rePositionBorder}px;
-    bottom: 0;
-    left: ${rePositionBorder}px;
-    right: ${rePositionBorder}px;
-    opacity: 0;
-`;
-
-const StyledResizeNW = styled.div`
-    background: red;
-    position: absolute;
-    cursor: nwse-resize;
-    width: ${rePositionBorder}px;
-    height: ${rePositionBorder}px;
-    top: 0;
-    left: 0;
-    opacity: 0;
-`;
-const StyledResizeNE = styled.div`
-    background: red;
-    position: absolute;
-    cursor: nesw-resize;
-    width: ${rePositionBorder}px;
-    height: ${rePositionBorder}px;
-    top: 0;
-    right: 0;
-    opacity: 0;
-`;
-const StyledResizeSW = styled.div`
-    background: red;
-    position: absolute;
-    cursor: nesw-resize;
-    width: ${rePositionBorder}px;
-    height: ${rePositionBorder}px;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-`;
-const StyledResizeSE = styled.div`
-    background: red;
-    position: absolute;
-    cursor: nwse-resize;
-    width: ${rePositionBorder}px;
-    height: ${rePositionBorder}px;
-    bottom: 0;
-    right: 0;
-    opacity: 0;
-`;
+import {
+    StyledWindow,
+    StyledTitleBar,
+    StyledRepositionBorder,
+} from './Window.styled';
 
 export default function Desktop() {
     const [relPosition, setRelPosition] = useState([0, 0]);
@@ -161,14 +54,6 @@ export default function Desktop() {
         document.removeEventListener('mouseup', stopRepositionALL);
     };
 
-    const startRepositionSE = e => {
-        if (e.button === 0) {
-            window.addEventListener('mousemove', duringRepositionSE);
-            window.addEventListener('mouseup', stopRepositionSE);
-            document.body.style.cursor = 'nwse-resize';
-        }
-    };
-
     const duringRepositionSE = e => {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
@@ -176,20 +61,6 @@ export default function Desktop() {
         setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
-    };
-
-    const stopRepositionSE = () => {
-        window.removeEventListener('mousemove', duringRepositionSE);
-        window.removeEventListener('mouseup', stopRepositionSE);
-        document.body.style.cursor = 'default';
-    };
-
-    const startRepositionNW = e => {
-        if (e.button === 0) {
-            window.addEventListener('mousemove', duringRepositionNW);
-            window.addEventListener('mouseup', stopRepositionNW);
-            document.body.style.cursor = 'nwse-resize';
-        }
     };
 
     const duringRepositionNW = e => {
@@ -201,20 +72,6 @@ export default function Desktop() {
         e.preventDefault();
     };
 
-    const stopRepositionNW = () => {
-        window.removeEventListener('mousemove', duringRepositionNW);
-        window.removeEventListener('mouseup', stopRepositionNW);
-        document.body.style.cursor = 'default';
-    };
-
-    const startRepositionNE = e => {
-        if (e.button === 0) {
-            window.addEventListener('mousemove', duringRepositionNE);
-            window.addEventListener('mouseup', stopRepositionNE);
-            document.body.style.cursor = 'nesw-resize';
-        }
-    };
-
     const duringRepositionNE = e => {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
@@ -222,20 +79,6 @@ export default function Desktop() {
         setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
-    };
-
-    const stopRepositionNE = () => {
-        window.removeEventListener('mousemove', duringRepositionNE);
-        window.removeEventListener('mouseup', stopRepositionNE);
-        document.body.style.cursor = 'default';
-    };
-
-    const startRepositionSW = e => {
-        if (e.button === 0) {
-            window.addEventListener('mousemove', duringRepositionSW);
-            window.addEventListener('mouseup', stopRepositionSW);
-            document.body.style.cursor = 'nesw-resize';
-        }
     };
 
     const duringRepositionSW = e => {
@@ -247,40 +90,12 @@ export default function Desktop() {
         e.preventDefault();
     };
 
-    const stopRepositionSW = () => {
-        window.removeEventListener('mousemove', duringRepositionSW);
-        window.removeEventListener('mouseup', stopRepositionSW);
-        document.body.style.cursor = 'default';
-    };
-
-    const startRepositionNN = e => {
-        if (e.button === 0) {
-            window.addEventListener('mousemove', duringRepositionNN);
-            window.addEventListener('mouseup', stopRepositionNN);
-            document.body.style.cursor = 'ns-resize';
-        }
-    };
-
     const duringRepositionNN = e => {
         const newPosition = { ...winPosition };
         newPosition.top = e.pageY;
         setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
-    };
-
-    const stopRepositionNN = () => {
-        window.removeEventListener('mousemove', duringRepositionNN);
-        window.removeEventListener('mouseup', stopRepositionNN);
-        document.body.style.cursor = 'default';
-    };
-
-    const startRepositionSS = e => {
-        if (e.button === 0) {
-            window.addEventListener('mousemove', duringRepositionSS);
-            window.addEventListener('mouseup', stopRepositionSS);
-            document.body.style.cursor = 'ns-resize';
-        }
     };
 
     const duringRepositionSS = e => {
@@ -291,40 +106,12 @@ export default function Desktop() {
         e.preventDefault();
     };
 
-    const stopRepositionSS = () => {
-        window.removeEventListener('mousemove', duringRepositionSS);
-        window.removeEventListener('mouseup', stopRepositionSS);
-        document.body.style.cursor = 'default';
-    };
-
-    const startRepositionEE = e => {
-        if (e.button === 0) {
-            window.addEventListener('mousemove', duringRepositionEE);
-            window.addEventListener('mouseup', stopRepositionEE);
-            document.body.style.cursor = 'ew-resize';
-        }
-    };
-
     const duringRepositionEE = e => {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
         setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
-    };
-
-    const stopRepositionEE = () => {
-        window.removeEventListener('mousemove', duringRepositionEE);
-        window.removeEventListener('mouseup', stopRepositionEE);
-        document.body.style.cursor = 'default';
-    };
-
-    const startRepositionWW = e => {
-        if (e.button === 0) {
-            window.addEventListener('mousemove', duringRepositionWW);
-            window.addEventListener('mouseup', stopRepositionWW);
-            document.body.style.cursor = 'ew-resize';
-        }
     };
 
     const duringRepositionWW = e => {
@@ -335,10 +122,27 @@ export default function Desktop() {
         e.preventDefault();
     };
 
-    const stopRepositionWW = () => {
-        window.removeEventListener('mousemove', duringRepositionWW);
-        window.removeEventListener('mouseup', stopRepositionWW);
+    let duringRepositionListener, stopRepositionListener;
+
+    const startReposition = (e, duringFn, cursor) => {
+        if (e.button === 0) {
+            stopRepositionListener = () => {
+                stopReposition(duringFn);
+            };
+            duringRepositionListener = e => {
+                duringFn(e);
+            };
+            window.addEventListener('mousemove', duringRepositionListener);
+            window.addEventListener('mouseup', stopRepositionListener);
+            document.body.style.cursor = cursor;
+        }
+    };
+
+    const stopReposition = () => {
+        window.removeEventListener('mousemove', duringRepositionListener);
+        window.removeEventListener('mouseup', stopRepositionListener);
         document.body.style.cursor = 'default';
+        console.log('jkdghakshd');
     };
 
     return (
@@ -356,14 +160,54 @@ export default function Desktop() {
                     onMouseMove={e => updateRelPosition(e)}
                 ></StyledTitleBar>
             </div>
-            <StyledResizeWW onMouseDown={e => startRepositionWW(e)} />
-            <StyledResizeNW onMouseDown={e => startRepositionNW(e)} />
-            <StyledResizeNN onMouseDown={e => startRepositionNN(e)} />
-            <StyledResizeNE onMouseDown={e => startRepositionNE(e)} />
-            <StyledResizeSW onMouseDown={e => startRepositionSW(e)} />
-            <StyledResizeSS onMouseDown={e => startRepositionSS(e)} />
-            <StyledResizeSE onMouseDown={e => startRepositionSE(e)} />
-            <StyledResizeEE onMouseDown={e => startRepositionEE(e)} />
+            <StyledRepositionBorder
+                className='direction-ww'
+                onMouseDown={e =>
+                    startReposition(e, duringRepositionWW, 'ew-resize')
+                }
+            />
+            <StyledRepositionBorder
+                className='direction-nw'
+                onMouseDown={e =>
+                    startReposition(e, duringRepositionNW, 'nwse-resize')
+                }
+            />
+            <StyledRepositionBorder
+                className='direction-nn'
+                onMouseDown={e =>
+                    startReposition(e, duringRepositionNN, 'ns-resize')
+                }
+            />
+            <StyledRepositionBorder
+                className='direction-ne'
+                onMouseDown={e =>
+                    startReposition(e, duringRepositionNE, 'nesw-resize')
+                }
+            />
+            <StyledRepositionBorder
+                className='direction-sw'
+                onMouseDown={e =>
+                    startReposition(e, duringRepositionSW, 'nesw-resize')
+                }
+            />
+            <StyledRepositionBorder
+                className='direction-ss'
+                onMouseDown={e =>
+                    startReposition(e, duringRepositionSS, 'ns-resize')
+                }
+            />
+            <StyledRepositionBorder
+                className='direction-se'
+                onMouseDown={e =>
+                    startReposition(e, duringRepositionSE, 'nwse-resize')
+                }
+            />
+            <StyledRepositionBorder
+                className='direction-ee'
+                onMouseDown={e =>
+                    startReposition(e, duringRepositionEE, 'ew-resize')
+                }
+            />
         </StyledWindow>
     );
 }
