@@ -6,8 +6,6 @@ import {
 } from './Window.styled';
 
 export default function Desktop() {
-    const [relPosition, setRelPosition] = useState([0, 0]);
-    const [moving, setMoving] = useState(false);
     const [winPosition, setWinPosition] = useState({
         top: 10,
         left: 10,
@@ -15,43 +13,35 @@ export default function Desktop() {
         height: 300,
     });
 
-    const updateRelPosition = e => {
-        if (!moving) {
+    let duringRepositionListener, stopRepositionListener;
+
+    const startReposition = (e, duringFn, cursor) => {
+        if (e.button === 0) {
             const relX = e.pageX - winPosition.left;
             const relY = e.pageY - winPosition.top;
-            setRelPosition([relX, relY]);
-            e.stopPropagation();
-            e.preventDefault();
+            stopRepositionListener = () => {
+                stopReposition(duringFn);
+            };
+            duringRepositionListener = e => {
+                duringFn(e, relX, relY);
+            };
+            window.addEventListener('mousemove', duringRepositionListener);
+            window.addEventListener('mouseup', stopRepositionListener);
+            document.body.style.cursor = cursor;
         }
     };
 
-    const startRepositionALL = e => {
-        if (e.button === 0) {
-            setMoving(true);
-            document.addEventListener('mousemove', duringRepositionALL);
-            document.addEventListener('mouseup', stopRepositionALL);
-            e.stopPropagation();
-            e.preventDefault();
-        }
-    };
-
-    const duringRepositionALL = e => {
+    const duringRepositionALL = (e, relX, relY) => {
         const newPosition = { ...winPosition };
-        newPosition.left = e.pageX - relPosition[0];
-        newPosition.top = e.pageY - relPosition[1];
+        newPosition.left = e.pageX - relX;
+        newPosition.top = e.pageY - relY;
         newPosition.width =
-            e.pageX - relPosition[0] + winPosition.width - winPosition.left;
+            e.pageX - relX + winPosition.width - winPosition.left;
         newPosition.height =
-            e.pageY - relPosition[1] + winPosition.height - winPosition.top;
+            e.pageY - relY + winPosition.height - winPosition.top;
         setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
-    };
-
-    const stopRepositionALL = () => {
-        setMoving(false);
-        document.removeEventListener('mousemove', duringRepositionALL);
-        document.removeEventListener('mouseup', stopRepositionALL);
     };
 
     const duringRepositionSE = e => {
@@ -122,27 +112,10 @@ export default function Desktop() {
         e.preventDefault();
     };
 
-    let duringRepositionListener, stopRepositionListener;
-
-    const startReposition = (e, duringFn, cursor) => {
-        if (e.button === 0) {
-            stopRepositionListener = () => {
-                stopReposition(duringFn);
-            };
-            duringRepositionListener = e => {
-                duringFn(e);
-            };
-            window.addEventListener('mousemove', duringRepositionListener);
-            window.addEventListener('mouseup', stopRepositionListener);
-            document.body.style.cursor = cursor;
-        }
-    };
-
     const stopReposition = () => {
         window.removeEventListener('mousemove', duringRepositionListener);
         window.removeEventListener('mouseup', stopRepositionListener);
         document.body.style.cursor = 'default';
-        console.log('jkdghakshd');
     };
 
     return (
@@ -156,8 +129,7 @@ export default function Desktop() {
         >
             <div className='window-inner'>
                 <StyledTitleBar
-                    onMouseDown={e => startRepositionALL(e)}
-                    onMouseMove={e => updateRelPosition(e)}
+                    onMouseDown={e => startReposition(e, duringRepositionALL)}
                 ></StyledTitleBar>
             </div>
             <StyledRepositionBorder
