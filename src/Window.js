@@ -15,6 +15,13 @@ export default function Desktop() {
 
     let duringRepositionListener, stopRepositionListener;
 
+    const mouseInsideWindow = e => {
+        const insideWindowX = e.pageX < window.innerWidth && e.pageX > 0;
+        const insideWindowY = e.pageY < window.innerHeight && e.pageY > 0;
+        if (insideWindowX && insideWindowY) return true;
+        return false;
+    };
+
     const startReposition = (e, duringFn, cursor, id) => {
         if (e.button === 0) {
             const element = document.getElementById(id);
@@ -40,9 +47,7 @@ export default function Desktop() {
             e.pageX - relX + winPosition.width - winPosition.left;
         newPosition.height =
             e.pageY - relY + winPosition.height - winPosition.top;
-        const insideWindowX = e.pageX < window.innerWidth && e.pageX > 0;
-        const insideWindowY = e.pageY < window.innerHeight && e.pageY > 0;
-        if (insideWindowX && insideWindowY) setWinPosition(newPosition);
+        if (mouseInsideWindow(e)) setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
@@ -51,7 +56,7 @@ export default function Desktop() {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
         newPosition.height = e.pageY;
-        setWinPosition(newPosition);
+        if (mouseInsideWindow(e)) setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
@@ -60,7 +65,7 @@ export default function Desktop() {
         const newPosition = { ...winPosition };
         newPosition.left = e.pageX;
         newPosition.top = e.pageY;
-        setWinPosition(newPosition);
+        if (mouseInsideWindow(e)) setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
@@ -69,7 +74,7 @@ export default function Desktop() {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
         newPosition.top = e.pageY;
-        setWinPosition(newPosition);
+        if (mouseInsideWindow(e)) setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
@@ -78,7 +83,7 @@ export default function Desktop() {
         const newPosition = { ...winPosition };
         newPosition.left = e.pageX;
         newPosition.height = e.pageY;
-        setWinPosition(newPosition);
+        if (mouseInsideWindow(e)) setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
@@ -86,7 +91,7 @@ export default function Desktop() {
     const duringRepositionNN = e => {
         const newPosition = { ...winPosition };
         newPosition.top = e.pageY;
-        setWinPosition(newPosition);
+        if (mouseInsideWindow(e)) setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
@@ -94,7 +99,7 @@ export default function Desktop() {
     const duringRepositionSS = e => {
         const newPosition = { ...winPosition };
         newPosition.height = e.pageY;
-        setWinPosition(newPosition);
+        if (mouseInsideWindow(e)) setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
@@ -102,7 +107,7 @@ export default function Desktop() {
     const duringRepositionEE = e => {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
-        setWinPosition(newPosition);
+        if (mouseInsideWindow(e)) setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
@@ -110,7 +115,7 @@ export default function Desktop() {
     const duringRepositionWW = e => {
         const newPosition = { ...winPosition };
         newPosition.left = e.pageX;
-        setWinPosition(newPosition);
+        if (mouseInsideWindow(e)) setWinPosition(newPosition);
         e.stopPropagation();
         e.preventDefault();
     };
