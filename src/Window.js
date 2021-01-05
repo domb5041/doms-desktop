@@ -3,14 +3,16 @@ import {
     StyledWindow,
     StyledTitleBar,
     StyledRepositionBorder,
+    StyledTrafficLights,
+    StyledWindowTitle,
 } from './Window.styled';
 
 export default function Desktop() {
     const [winPosition, setWinPosition] = useState({
         top: 10,
         left: 10,
-        width: 400,
-        height: 300,
+        width: window.innerWidth - 100,
+        height: window.innerHeight - 200,
     });
 
     let duringRepositionListener, stopRepositionListener;
@@ -131,7 +133,14 @@ export default function Desktop() {
                             'window-container'
                         )
                     }
-                ></StyledTitleBar>
+                >
+                    <StyledTrafficLights>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </StyledTrafficLights>
+                    <StyledWindowTitle>Window Title</StyledWindowTitle>
+                </StyledTitleBar>
             </div>
             <StyledRepositionBorder
                 id='reposition-ww'

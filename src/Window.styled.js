@@ -23,7 +23,31 @@ export const StyledWindow = styled.div`
 export const StyledTitleBar = styled.div`
     border-bottom: 2px solid black;
     width: 100%;
-    height: 30px;
+    height: 35px;
+    display: flex;
+    padding: 5px 10px;
+`;
+
+export const StyledTrafficLights = styled.div`
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > div {
+        width: 12px;
+        height: 12px;
+        border: 2px solid black;
+        border-radius: 100%;
+        margin-right: 4px;
+    }
+`;
+
+export const StyledWindowTitle = styled.div`
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 10px;
 `;
 
 export const StyledRepositionBorder = styled.div`
