@@ -7,21 +7,27 @@ import {
     StyledWindowTitle,
 } from './Window.styled';
 
-export default function Desktop() {
+export default function Desktop({
+    close,
+    name,
+    activeWindow,
+    folderId,
+    setActiveWindow,
+}) {
     const [winPosition, setWinPosition] = useState({
-        top: 10,
-        left: 10,
-        width: window.innerWidth - 100,
-        height: window.innerHeight - 200,
+        top: 100,
+        left: 100,
+        width: 400,
+        height: 300,
     });
 
     let duringRepositionListener, stopRepositionListener;
 
-    const startReposition = (e, duringFn, cursor, id) => {
+    const startReposition = (e, duringFn, cursor) => {
         if (e.button === 0) {
-            const element = document.getElementById(id);
-            const relX = e.pageX - element.getBoundingClientRect().left;
-            const relY = e.pageY - element.getBoundingClientRect().top;
+            setActiveWindow(folderId);
+            const relX = e.pageX - winPosition.left;
+            const relY = e.pageY - winPosition.top;
             stopRepositionListener = () => {
                 stopReposition(duringFn);
             };
@@ -121,7 +127,13 @@ export default function Desktop() {
     };
 
     return (
-        <StyledWindow style={winPositionStyle} id='window-container'>
+        <StyledWindow
+            style={winPositionStyle}
+            id='window-container'
+            activeWindow={activeWindow}
+            folderId={folderId}
+            onClick={() => setActiveWindow(folderId)}
+        >
             <div className='window-inner'>
                 <StyledTitleBar
                     id='reposition-all'
@@ -135,11 +147,11 @@ export default function Desktop() {
                     }
                 >
                     <StyledTrafficLights>
-                        <div></div>
+                        <div onClick={close}></div>
                         <div></div>
                         <div></div>
                     </StyledTrafficLights>
-                    <StyledWindowTitle>Window Title</StyledWindowTitle>
+                    <StyledWindowTitle>{name}</StyledWindowTitle>
                 </StyledTitleBar>
             </div>
             <StyledRepositionBorder

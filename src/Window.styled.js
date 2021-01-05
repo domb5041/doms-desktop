@@ -6,8 +6,12 @@ export const StyledWindow = styled.div`
     position: absolute;
     min-width: 200px;
     min-height: 100px;
+    z-index: ${props => (props.activeWindow === props.folderId ? 3000 : 1)};
     & .window-inner {
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        box-shadow: ${props =>
+            props.activeWindow === props.folderId
+                ? '0 5px 20px rgba(0, 0, 0, 0.2)'
+                : 'none'};
         border-radius: 10px;
         overflow: hidden;
         border: 2px solid black;
@@ -39,6 +43,7 @@ export const StyledTrafficLights = styled.div`
         border: 2px solid black;
         border-radius: 100%;
         margin-right: 4px;
+        cursor: pointer;
     }
 `;
 
