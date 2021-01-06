@@ -23,7 +23,7 @@ export default function Desktop() {
                     name={folder.name}
                     activeWindow={activeWindow}
                     setActiveWindow={id => setActiveWindow(id)}
-                    folderId={folder.id}
+                    folder={folder}
                 />
             ))}
         </StyledDesktop>

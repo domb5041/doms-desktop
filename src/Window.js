@@ -5,13 +5,15 @@ import {
     StyledRepositionBorder,
     StyledTrafficLights,
     StyledWindowTitle,
+    StyledFiles,
 } from './Window.styled';
+import Folder from './Folder';
 
 export default function Desktop({
     close,
     name,
     activeWindow,
-    folderId,
+    folder,
     setActiveWindow,
 }) {
     const [winPosition, setWinPosition] = useState({
@@ -25,7 +27,7 @@ export default function Desktop({
 
     const startReposition = (e, duringFn, cursor) => {
         if (e.button === 0) {
-            setActiveWindow(folderId);
+            setActiveWindow(folder.id);
             const relX = e.pageX - winPosition.left;
             const relY = e.pageY - winPosition.top;
             stopRepositionListener = () => {
@@ -131,8 +133,8 @@ export default function Desktop({
             style={winPositionStyle}
             id='window-container'
             activeWindow={activeWindow}
-            folderId={folderId}
-            onClick={() => setActiveWindow(folderId)}
+            folderId={folder.id}
+            onClick={() => setActiveWindow(folder.id)}
         >
             <div className='window-inner'>
                 <StyledTitleBar
@@ -153,6 +155,11 @@ export default function Desktop({
                     </StyledTrafficLights>
                     <StyledWindowTitle>{name}</StyledWindowTitle>
                 </StyledTitleBar>
+                <StyledFiles>
+                    {folder.files.map(file => (
+                        <Folder name={file.name} />
+                    ))}
+                </StyledFiles>
             </div>
             <StyledRepositionBorder
                 id='reposition-ww'

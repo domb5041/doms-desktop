@@ -5,6 +5,7 @@ import Window from './Window';
 const StyledFolder = styled.div`
     cursor: pointer;
     margin-right: 20px;
+    margin-bottom: 20px;
     & .folder-icon {
         width: 60px;
         height: 50px;
@@ -21,14 +22,14 @@ const StyledFolder = styled.div`
 export default function Desktop({
     name,
     activeWindow,
-    folderId,
+    folder,
     setActiveWindow,
 }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpenFolder = () => {
         setIsOpen(true);
-        setActiveWindow(folderId);
+        setActiveWindow(folder.id);
     };
     return (
         <>
@@ -41,7 +42,7 @@ export default function Desktop({
                     close={() => setIsOpen(false)}
                     name={name}
                     activeWindow={activeWindow}
-                    folderId={folderId}
+                    folder={folder}
                     setActiveWindow={setActiveWindow}
                 />
             )}

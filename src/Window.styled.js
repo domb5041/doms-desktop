@@ -55,6 +55,12 @@ export const StyledWindowTitle = styled.div`
     margin: 0 10px;
 `;
 
+export const StyledFiles = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+`;
+
 export const StyledRepositionBorder = styled.div`
     position: absolute;
     opacity: 0;
