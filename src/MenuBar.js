@@ -80,6 +80,38 @@ export default function MenuBar() {
         });
     };
 
+    const getDate = () => {
+        const months = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+        ];
+        const dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const format = 'www dd mmm hh:mm';
+        const date = new Date();
+        const map = {
+            www: dayOfWeek[date.getDay()],
+            mmm: months[date.getMonth()],
+            dd: date.getDate(),
+            hh: date.getHours(),
+            mm: date.getMinutes(),
+        };
+        const formattedDate = format.replace(
+            /www|dd|mmm|hh|mm/gi,
+            matched => map[matched]
+        );
+        return formattedDate;
+    };
+
     return (
         <>
             <StyledMenuBar>
@@ -103,6 +135,9 @@ export default function MenuBar() {
                     style={{ flex: 1 }}
                     onMouseOver={contextMenu.id ? closeMenu : null}
                 ></div>
+                <StyledMenuItem onMouseOver={contextMenu.id ? closeMenu : null}>
+                    {getDate()}
+                </StyledMenuItem>
             </StyledMenuBar>
             {contextMenu.id && (
                 <>
