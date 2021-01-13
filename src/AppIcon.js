@@ -26,6 +26,10 @@ const StyledApp = styled.div`
         top: -50px;
         opacity: 0;
         font-weight: bold;
+        pointer-events: none;
+        user-select: none;
+        transform: translateY(10px);
+        transition: 0s;
     }
     & .app-dot {
         background-color: black;
@@ -40,6 +44,8 @@ const StyledApp = styled.div`
         }
         & .app-tooltip {
             opacity: 1;
+            transform: translateY(0);
+            transition: 0.2s;
         }
     }
 `;
