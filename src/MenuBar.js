@@ -9,12 +9,18 @@ const StyledMenuBar = styled.div`
     display: flex;
     align-items: stretch;
     padding: 0 5px;
-    & .menu-item {
-        padding: 0 10px;
-        display: flex;
-        align-items: center;
-        font-weight: bold;
-    }
+`;
+
+const StyledMenuItem = styled.div`
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: ${props => (props.active ? 'black' : 'transparent')};
+    color: ${props => (props.active ? 'white' : 'black')};
+    cursor: pointer;
+    user-select: none;
 `;
 
 const StyledContextMenu = styled.div`
@@ -22,8 +28,9 @@ const StyledContextMenu = styled.div`
     width: 200px;
     height: 200px;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 7px;
     border: 2px solid black;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 `;
 
 const StyledHiddenClose = styled.div`
@@ -36,7 +43,7 @@ const StyledHiddenClose = styled.div`
 
 export default function MenuBar() {
     const [contextMenu, setContextMenu] = useState({
-        visible: false,
+        id: '',
         top: 0,
         left: 0,
     });
@@ -46,7 +53,7 @@ export default function MenuBar() {
         setContextMenu({
             top: position.bottom,
             left: position.left,
-            visible: true,
+            id: id,
         });
     };
 
@@ -54,7 +61,7 @@ export default function MenuBar() {
         setContextMenu({
             top: 0,
             left: 0,
-            visible: false,
+            id: '',
         });
     };
 
@@ -62,25 +69,27 @@ export default function MenuBar() {
         <>
             <StyledMenuBar>
                 {menuItems.map(menuItem => (
-                    <div
+                    <StyledMenuItem
                         id={menuItem.id}
-                        onClick={() => openMenu(menuItem.id)}
-                        onMouseOver={
-                            contextMenu.visible
-                                ? () => openMenu(menuItem.id)
-                                : null
+                        onClick={
+                            contextMenu.id
+                                ? closeMenu
+                                : () => openMenu(menuItem.id)
                         }
-                        className='menu-item'
+                        onMouseOver={
+                            contextMenu.id ? () => openMenu(menuItem.id) : null
+                        }
+                        active={menuItem.id === contextMenu.id}
                     >
                         {menuItem.name}
-                    </div>
+                    </StyledMenuItem>
                 ))}
                 <div
                     style={{ flex: 1 }}
-                    onMouseOver={contextMenu.visible ? closeMenu : null}
+                    onMouseOver={contextMenu.id ? closeMenu : null}
                 ></div>
             </StyledMenuBar>
-            {contextMenu.visible && (
+            {contextMenu.id && (
                 <>
                     <StyledHiddenClose onClick={closeMenu} />
                     <StyledContextMenu
