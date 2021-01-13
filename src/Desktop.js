@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Folder from './Folder';
 import fileStructure from './fileStructure';
 import MenuBar from './MenuBar';
+import Dock from './Dock';
 
 const StyledDesktop = styled.div`
     background-color: whitesmoke;
@@ -35,6 +36,7 @@ export default function Desktop() {
                     />
                 ))}
             </div>
+            <Dock />
         </StyledDesktop>
     );
 }
