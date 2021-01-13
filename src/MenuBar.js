@@ -25,12 +25,27 @@ const StyledMenuItem = styled.div`
 
 const StyledContextMenu = styled.div`
     position: absolute;
-    width: 200px;
-    height: 200px;
+    min-width: 200px;
     background-color: white;
     border-radius: 7px;
     border: 2px solid black;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+`;
+
+const StyledContextMenuItem = styled.div`
+    border-radius: 4px;
+    padding: 7px 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+`;
+
+const StyledContextMenuSpacer = styled.div`
+    border-bottom: 1px solid black;
+    margin: 5px;
 `;
 
 const StyledHiddenClose = styled.div`
@@ -96,9 +111,20 @@ export default function MenuBar() {
                         id='context-menu'
                         style={{ top: contextMenu.top, left: contextMenu.left }}
                     >
-                        <div>x</div>
-                        <div>x</div>
-                        <div>x</div>
+                        {menuItems[
+                            menuItems.findIndex(n => n.id === contextMenu.id)
+                        ].items.map(item => (
+                            <>
+                                {item.type === 'button' && (
+                                    <StyledContextMenuItem>
+                                        {item.name}
+                                    </StyledContextMenuItem>
+                                )}
+                                {item.type === 'spacer' && (
+                                    <StyledContextMenuSpacer />
+                                )}
+                            </>
+                        ))}
                     </StyledContextMenu>
                 </>
             )}
