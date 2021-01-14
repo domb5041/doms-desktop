@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { formatDate } from '../utilities';
 
 const StyledListView = styled.div`
     display: flex;
@@ -58,7 +59,9 @@ export default function ListView({ files }) {
                 {files.map((file, i) => (
                     <StyledFile evenRow={i % 2 === 0}>
                         <div>{file.name}</div>
-                        <div>{file.dateModified}</div>
+                        <div>
+                            {formatDate(file.dateModified, 'www dd mmm hh:mm')}
+                        </div>
                         <div>{file.size}</div>
                         <div>{file.type}</div>
                     </StyledFile>

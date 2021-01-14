@@ -107,7 +107,7 @@ export default function MenuBar() {
                     onMouseOver={contextMenu.id ? closeMenu : null}
                 ></div>
                 <StyledMenuItem onMouseOver={contextMenu.id ? closeMenu : null}>
-                    {formatDate(new Date(), 'www dd mmm hh:mm')}
+                    {formatDate(null, 'www dd mmm hh:mm')}
                 </StyledMenuItem>
             </StyledMenuBar>
             {contextMenu.id && (
