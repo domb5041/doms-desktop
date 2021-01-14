@@ -35,8 +35,14 @@ const StyledFile = styled.div`
     padding: 10px 13px;
     border-radius: 8px;
     background-color: ${props =>
-        props.evenRow ? 'transparent' : 'whitesmoke'};
+        props.activeFile
+            ? 'black'
+            : props.evenRow
+            ? 'transparent'
+            : 'whitesmoke'};
+    color: ${props => (props.activeFile ? 'white' : 'black')};
     display: flex;
+    cursor: pointer;
     & > div {
         flex: 1;
         white-space: nowrap;
@@ -47,6 +53,7 @@ const StyledFile = styled.div`
 `;
 
 export default function ListView({ files }) {
+    const [activeFile, setActiveFile] = useState(null);
     return (
         <StyledListView>
             <StyledListHeader>
@@ -57,7 +64,11 @@ export default function ListView({ files }) {
             </StyledListHeader>
             <StyledFiles>
                 {files.map((file, i) => (
-                    <StyledFile evenRow={i % 2 === 0}>
+                    <StyledFile
+                        evenRow={i % 2 === 0}
+                        onClick={() => setActiveFile(i)}
+                        activeFile={i === activeFile}
+                    >
                         <div>{file.name}</div>
                         <div>
                             {formatDate(
