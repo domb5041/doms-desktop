@@ -21,6 +21,8 @@ export const StyledWindow = styled.div`
         left: ${borderWeight / 2 - 2}px;
         right: ${borderWeight / 2 - 2}px;
         bottom: ${borderWeight / 2 - 2}px;
+        display: flex;
+        flex-direction: column;
     }
 `;
 
