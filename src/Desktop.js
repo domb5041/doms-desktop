@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Folder from './Folder';
-import fileStructure from './fileStructure';
-import MenuBar from './MenuBar';
-import Dock from './Dock';
+import Folder from './fileBrowse/Folder';
+import fileStructure from './data/fileStructure';
+import MenuBar from './menuBar/MenuBar';
+import Dock from './dock/Dock';
 
 const StyledDesktop = styled.div`
     background-color: whitesmoke;

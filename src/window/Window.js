@@ -7,7 +7,7 @@ import {
     StyledWindowTitle,
     StyledFiles,
 } from './Window.styled';
-import Folder from './Folder';
+import File from '../fileBrowse/File';
 
 export default function Desktop({
     close,
@@ -157,7 +157,7 @@ export default function Desktop({
                 </StyledTitleBar>
                 <StyledFiles>
                     {folder.files.map(file => (
-                        <Folder name={file.name} />
+                        <File name={file.name} />
                     ))}
                 </StyledFiles>
             </div>

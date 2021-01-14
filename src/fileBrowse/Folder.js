@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Window from './Window';
+import Window from '../window/Window';
 
 const StyledFolder = styled.div`
     cursor: pointer;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     & .folder-icon {
         width: 60px;
         height: 50px;
@@ -16,6 +18,12 @@ const StyledFolder = styled.div`
     & .folder-label {
         text-align: center;
         margin-top: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        font-weight: bold;
+        font-size: 13px;
     }
 `;
 

@@ -12,6 +12,8 @@ const StyledDock = styled.div`
     box-shadow: 0 5px 40px rgba(0, 0, 0, 0.2);
     display: flex;
     padding: 0 5px;
+    z-index: 5000;
+    background-color: white;
 `;
 
 export default function Dock() {

@@ -1,31 +1,31 @@
 export default [
     {
         id: '1',
-        name: 'Nudes',
+        name: 'Downloads',
         files: [
             {
                 id: '820398420',
-                name: 'nude1',
+                name: 'download 1',
             },
             {
                 id: '2131288',
-                name: 'nude2',
+                name: 'download 2',
             },
             {
                 id: '2131288',
-                name: 'nude3',
+                name: 'ds',
             },
             {
                 id: '8120989048',
-                name: 'nude4',
+                name: 'download 4',
             },
             {
                 id: '2390482103948',
-                name: 'nude5',
+                name: 'download 5',
             },
             {
                 id: '3or2o980e',
-                name: 'nude6',
+                name: 'download 6',
             },
         ],
     },

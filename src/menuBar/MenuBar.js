@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import menuItems from './menuItems';
-import { formatDate } from './utilities';
+import menuItems from '../data/menuItems';
+import { formatDate } from '../utilities';
 
 const StyledMenuBar = styled.div`
     height: 30px;
