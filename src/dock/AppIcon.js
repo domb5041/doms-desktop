@@ -18,12 +18,12 @@ const StyledApp = styled.div`
     }
     & .app-tooltip {
         position: absolute;
-        border: 2px solid black;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         border-radius: 7px;
-        padding: 5px 10px;
-        background-color: white;
-        top: -45px;
+        padding: 6px 11px;
+        background-color: black;
+        color: white;
+        top: -42px;
         opacity: 0;
         font-weight: bold;
         pointer-events: none;
