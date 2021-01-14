@@ -32,6 +32,7 @@ const StyledContextMenu = styled.div`
     border: 2px solid black;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     padding: 5px;
+    z-index: 4001;
 `;
 
 const StyledContextMenuItem = styled.div`
@@ -55,6 +56,7 @@ const StyledHiddenClose = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh;
+    z-index: 4000;
 `;
 
 export default function MenuBar() {

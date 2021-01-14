@@ -16,7 +16,7 @@ const StyledDesktop = styled.div`
     flex-direction: column;
     & .desktop-area {
         display: flex;
-        padding: 20px;
+        padding: 10px;
         flex: 1;
     }
 `;

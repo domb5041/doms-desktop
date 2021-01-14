@@ -46,7 +46,7 @@ export default [
         items: [
             { name: 'as Icons', type: 'button' },
             { name: 'as List', type: 'button' },
-            { name: 'as Collumns', type: 'button' },
+            { name: 'as Columns', type: 'button' },
             { name: 'as Gallery', type: 'button' },
         ],
     },

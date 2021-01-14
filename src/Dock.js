@@ -4,7 +4,7 @@ import AppIcon from './AppIcon';
 
 const StyledDock = styled.div`
     position: absolute;
-    bottom: 10px;
+    bottom: 5px;
     border: 2px solid black;
     left: 50%;
     transform: translateX(-50%);
