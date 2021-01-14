@@ -5,9 +5,8 @@ import {
     StyledRepositionBorder,
     StyledTrafficLights,
     StyledWindowTitle,
-    StyledFiles,
 } from './Window.styled';
-import File from '../fileBrowse/File';
+import ListView from '../fileBrowse/ListView';
 
 export default function Desktop({
     close,
@@ -155,11 +154,7 @@ export default function Desktop({
                     </StyledTrafficLights>
                     <StyledWindowTitle>{name}</StyledWindowTitle>
                 </StyledTitleBar>
-                <StyledFiles>
-                    {folder.files.map(file => (
-                        <File name={file.name} />
-                    ))}
-                </StyledFiles>
+                <ListView files={folder.files} />
             </div>
             <StyledRepositionBorder
                 id='reposition-ww'

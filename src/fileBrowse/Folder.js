@@ -23,7 +23,7 @@ const StyledFolder = styled.div`
         text-overflow: ellipsis;
         width: 100%;
         font-weight: bold;
-        font-size: 13px;
+        font-size: 14px;
     }
 `;
 

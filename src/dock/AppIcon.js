@@ -8,7 +8,7 @@ const StyledApp = styled.div`
     align-items: center;
     cursor: pointer;
     & .app-inner {
-        transition: 0.2s;
+        transition: 0.7s;
         width: 60px;
         height: 60px;
         border: 2px solid black;
@@ -41,6 +41,7 @@ const StyledApp = styled.div`
     &:hover {
         & .app-inner {
             transform: translateY(-20px);
+            transition: 0.2s;
         }
         & .app-tooltip {
             opacity: 1;
