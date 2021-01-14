@@ -33,3 +33,9 @@ export const formatDate = (timestamp, format) => {
     );
     return formattedDate;
 };
+
+export const formatBytes = bytes => {
+    const unit = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    return Number((bytes / Math.pow(1024, i)).toFixed(1)) * 1 + ' ' + unit[i];
+};

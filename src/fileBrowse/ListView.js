@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { formatDate } from '../utilities';
+import { formatDate, formatBytes } from '../utilities';
 
 const StyledListView = styled.div`
     display: flex;
@@ -11,7 +11,7 @@ const StyledListView = styled.div`
 
 const StyledListHeader = styled.div`
     padding: 10px 10px;
-    margin: 0 13px;
+    margin: 0 13px 2px 13px;
     display: flex;
     border-bottom: 1px solid black;
     & > div {
@@ -76,7 +76,7 @@ export default function ListView({ files }) {
                                 'dd mmm yyyy at hh:mm'
                             )}
                         </div>
-                        <div>{file.size}</div>
+                        <div>{formatBytes(file.size)}</div>
                         <div>{file.type}</div>
                     </StyledFile>
                 ))}
