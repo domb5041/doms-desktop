@@ -60,7 +60,10 @@ export default function ListView({ files }) {
                     <StyledFile evenRow={i % 2 === 0}>
                         <div>{file.name}</div>
                         <div>
-                            {formatDate(file.dateModified, 'www dd mmm hh:mm')}
+                            {formatDate(
+                                file.dateModified,
+                                'dd mmm yyyy at hh:mm'
+                            )}
                         </div>
                         <div>{file.size}</div>
                         <div>{file.type}</div>
