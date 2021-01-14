@@ -12,7 +12,7 @@ export default [
             },
             {
                 id: '2131288',
-                name: 'download 2',
+                name: 'moo',
                 dateModified: '1610895843',
                 size: 438957089257,
                 type: 'JPEG Image',
@@ -22,7 +22,7 @@ export default [
                 name: 'ds',
                 dateModified: '1610625843',
                 size: 12836,
-                type: 'JPEG Image',
+                type: 'PDF Document',
             },
             {
                 id: '8120989048',
