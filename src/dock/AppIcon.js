@@ -23,13 +23,11 @@ const StyledApp = styled.div`
         border-radius: 7px;
         padding: 5px 10px;
         background-color: white;
-        top: -50px;
+        top: -45px;
         opacity: 0;
         font-weight: bold;
         pointer-events: none;
         user-select: none;
-        transform: translateY(10px);
-        transition: 0s;
     }
     & .app-dot {
         background-color: black;
@@ -40,13 +38,13 @@ const StyledApp = styled.div`
     }
     &:hover {
         & .app-inner {
-            transform: translateY(-20px);
-            transition: 0.2s;
+            transform: translateY(-15px);
+            transition: 0.1s;
+            box-shadow: 0 20px 15px rgba(0, 0, 0, 0.1);
         }
         & .app-tooltip {
             opacity: 1;
             transform: translateY(0);
-            transition: 0.2s;
         }
     }
 `;
