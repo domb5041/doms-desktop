@@ -61,29 +61,36 @@ export default function ListView({ files }) {
 
     useEffect(() => handleSortBy('name', 'text'), []);
 
-    const handleSortBy = (col, type) => {
+    const handleSortBy = col => {
         const files2Copy = [...files2];
-        const sortMap = {
-            text: (a, b) => (a[col] === b[col] ? 0 : a[col] < b[col] ? -1 : 1),
-            number: (a, b) => a[col] - b[col],
+        const sortFn = () => {
+            switch (col) {
+                case 'name':
+                case 'type':
+                    return (a, b) =>
+                        a[col] === b[col] ? 0 : a[col] < b[col] ? -1 : 1;
+                case 'size':
+                case 'dateModified':
+                    return (a, b) => a[col] - b[col];
+            }
         };
         setSortBy(col);
-        setFiles2(files2Copy.sort(sortMap[type]));
+        setFiles2(files2Copy.sort(sortFn()));
     };
 
     return (
         <StyledListView>
             <StyledListHeader>
-                <div onClick={() => handleSortBy('name', 'text')}>
+                <div onClick={() => handleSortBy('name')}>
                     Name {sortBy === 'name' && 'v'}
                 </div>
-                <div onClick={() => handleSortBy('dateModified', 'number')}>
+                <div onClick={() => handleSortBy('dateModified')}>
                     Date Modified {sortBy === 'dateModified' && 'v'}
                 </div>
-                <div onClick={() => handleSortBy('size', 'number')}>
+                <div onClick={() => handleSortBy('size')}>
                     Size {sortBy === 'size' && 'v'}
                 </div>
-                <div onClick={() => handleSortBy('type', 'text')}>
+                <div onClick={() => handleSortBy('type')}>
                     Kind {sortBy === 'type' && 'v'}
                 </div>
             </StyledListHeader>
@@ -91,8 +98,8 @@ export default function ListView({ files }) {
                 {files2.map((file, i) => (
                     <StyledFile
                         evenRow={i % 2 === 0}
-                        onClick={() => setActiveFile(i)}
-                        activeFile={i === activeFile}
+                        onClick={() => setActiveFile(file.id)}
+                        activeFile={file.id === activeFile}
                     >
                         <div>{file.name}</div>
                         <div>
