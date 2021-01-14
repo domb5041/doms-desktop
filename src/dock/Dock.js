@@ -14,6 +14,10 @@ const StyledDock = styled.div`
     padding: 0 5px;
     z-index: 5000;
     background-color: white;
+    transition: 0.1s;
+    &:hover {
+        padding: 0 15px;
+    }
 `;
 
 export default function Dock() {
