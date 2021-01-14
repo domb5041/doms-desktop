@@ -8,7 +8,7 @@ const StyledApp = styled.div`
     align-items: center;
     cursor: pointer;
     & .app-inner {
-        transition: 0.7s;
+        transition: 0.5s;
         width: 60px;
         height: 60px;
         border: 2px solid black;

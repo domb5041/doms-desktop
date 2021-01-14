@@ -14,9 +14,10 @@ const StyledDock = styled.div`
     padding: 0 5px;
     z-index: 5000;
     background-color: white;
-    transition: 0.1s;
+    transition: 0.5s;
     &:hover {
         padding: 0 15px;
+        transition: 0.1s;
     }
 `;
 
