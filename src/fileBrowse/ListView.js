@@ -34,6 +34,17 @@ const StyledHeadCol = styled.div`
         transform: translateY(-50%);
         font-size: 17px;
     }
+    & .column-resize {
+        position: absolute;
+        right: 0;
+        width: 1px;
+        height: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 17px;
+        font-weight: normal;
+        background-color: black;
+    }
 `;
 
 const StyledFiles = styled.div`
@@ -109,14 +120,17 @@ export default function ListView({ files }) {
                 <StyledHeadCol onClick={() => handleSortBy('name')}>
                     Name
                     {returnSortSymbol('name')}
+                    <div className='column-resize' />
                 </StyledHeadCol>
                 <StyledHeadCol onClick={() => handleSortBy('dateModified')}>
                     Date Modified
                     {returnSortSymbol('dateModified')}
+                    <div className='column-resize' />
                 </StyledHeadCol>
                 <StyledHeadCol onClick={() => handleSortBy('size')}>
                     Size
                     {returnSortSymbol('size')}
+                    <div className='column-resize' />
                 </StyledHeadCol>
                 <StyledHeadCol onClick={() => handleSortBy('type')}>
                     Kind
