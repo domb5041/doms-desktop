@@ -57,41 +57,57 @@ const StyledFile = styled.div`
 export default function ListView({ files }) {
     const [activeFile, setActiveFile] = useState(null);
     const [files2, setFiles2] = useState(files);
-    const [sortBy, setSortBy] = useState(null);
+    const [sortBy, setSortBy] = useState([null, false]);
 
-    useEffect(() => handleSortBy('name', 'text'), []);
+    useEffect(() => handleSortBy('name'), []);
 
     const handleSortBy = col => {
         const files2Copy = [...files2];
+        const reverse = (sortBy[0] === col && !sortBy[1]) || false;
+
+        const sortText = (a, b) =>
+            a[col] === b[col] ? 0 : a[col] < b[col] ? -1 : 1;
+        const sortTextR = (a, b) =>
+            a[col] === b[col] ? 0 : b[col] < a[col] ? -1 : 1;
+        const sortNumber = (a, b) => a[col] - b[col];
+        const sortNumberR = (a, b) => b[col] - a[col];
+
         const sortFn = () => {
             switch (col) {
                 case 'name':
                 case 'type':
-                    return (a, b) =>
-                        a[col] === b[col] ? 0 : a[col] < b[col] ? -1 : 1;
+                    return reverse ? sortTextR : sortText;
                 case 'size':
                 case 'dateModified':
-                    return (a, b) => a[col] - b[col];
+                    return reverse ? sortNumberR : sortNumber;
             }
         };
-        setSortBy(col);
+
+        setSortBy([col, reverse]);
         setFiles2(files2Copy.sort(sortFn()));
+    };
+
+    const returnSortSymbol = col => {
+        if (sortBy[0] === col) {
+            return sortBy[1] ? '^' : 'V';
+        }
+        return null;
     };
 
     return (
         <StyledListView>
             <StyledListHeader>
                 <div onClick={() => handleSortBy('name')}>
-                    Name {sortBy === 'name' && 'v'}
+                    Name {returnSortSymbol('name')}
                 </div>
                 <div onClick={() => handleSortBy('dateModified')}>
-                    Date Modified {sortBy === 'dateModified' && 'v'}
+                    Date Modified {returnSortSymbol('dateModified')}
                 </div>
                 <div onClick={() => handleSortBy('size')}>
-                    Size {sortBy === 'size' && 'v'}
+                    Size {returnSortSymbol('size')}
                 </div>
                 <div onClick={() => handleSortBy('type')}>
-                    Kind {sortBy === 'type' && 'v'}
+                    Kind {returnSortSymbol('type')}
                 </div>
             </StyledListHeader>
             <StyledFiles>
