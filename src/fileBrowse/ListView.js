@@ -14,16 +14,25 @@ const StyledListHeader = styled.div`
     margin: 0 13px 2px 13px;
     display: flex;
     border-bottom: 1px solid black;
-    & > div {
-        flex: 1;
-        font-size: 14px;
-        font-weight: bold;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin-right: 7px;
-        padding: 10px 0;
-        cursor: pointer;
+`;
+const StyledHeadCol = styled.div`
+    flex: 1;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 7px;
+    padding: 10px 0;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    & .sort-arrow {
+        position: absolute;
+        right: 7px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 17px;
     }
 `;
 
@@ -89,7 +98,7 @@ export default function ListView({ files }) {
 
     const returnSortSymbol = col => {
         if (sortBy[0] === col) {
-            return sortBy[1] ? '^' : 'V';
+            return <div className='sort-arrow'>{sortBy[1] ? '⋀' : '⋁'}</div>;
         }
         return null;
     };
@@ -97,18 +106,22 @@ export default function ListView({ files }) {
     return (
         <StyledListView>
             <StyledListHeader>
-                <div onClick={() => handleSortBy('name')}>
-                    Name {returnSortSymbol('name')}
-                </div>
-                <div onClick={() => handleSortBy('dateModified')}>
-                    Date Modified {returnSortSymbol('dateModified')}
-                </div>
-                <div onClick={() => handleSortBy('size')}>
-                    Size {returnSortSymbol('size')}
-                </div>
-                <div onClick={() => handleSortBy('type')}>
-                    Kind {returnSortSymbol('type')}
-                </div>
+                <StyledHeadCol onClick={() => handleSortBy('name')}>
+                    Name
+                    {returnSortSymbol('name')}
+                </StyledHeadCol>
+                <StyledHeadCol onClick={() => handleSortBy('dateModified')}>
+                    Date Modified
+                    {returnSortSymbol('dateModified')}
+                </StyledHeadCol>
+                <StyledHeadCol onClick={() => handleSortBy('size')}>
+                    Size
+                    {returnSortSymbol('size')}
+                </StyledHeadCol>
+                <StyledHeadCol onClick={() => handleSortBy('type')}>
+                    Kind
+                    {returnSortSymbol('type')}
+                </StyledHeadCol>
             </StyledListHeader>
             <StyledFiles>
                 {files2.map((file, i) => (
