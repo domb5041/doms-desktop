@@ -183,17 +183,6 @@ export default function Window({
                 }
             />
             <StyledRepositionBorder
-                id='reposition-nw'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionNW,
-                        'nwse-resize',
-                        'reposition-nw'
-                    )
-                }
-            />
-            <StyledRepositionBorder
                 id='reposition-nn'
                 onMouseDown={e =>
                     startReposition(
@@ -201,28 +190,6 @@ export default function Window({
                         duringRepositionNN,
                         'ns-resize',
                         'reposition-nn'
-                    )
-                }
-            />
-            <StyledRepositionBorder
-                id='reposition-ne'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionNE,
-                        'nesw-resize',
-                        'reposition-ne'
-                    )
-                }
-            />
-            <StyledRepositionBorder
-                id='reposition-sw'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionSW,
-                        'nesw-resize',
-                        'reposition-sw'
                     )
                 }
             />
@@ -238,6 +205,39 @@ export default function Window({
                 }
             />
             <StyledRepositionBorder
+                id='reposition-ee'
+                onMouseDown={e =>
+                    startReposition(
+                        e,
+                        duringRepositionEE,
+                        'ew-resize',
+                        'reposition-ee'
+                    )
+                }
+            />
+            <StyledRepositionBorder
+                id='reposition-nw'
+                onMouseDown={e =>
+                    startReposition(
+                        e,
+                        duringRepositionNW,
+                        'nwse-resize',
+                        'reposition-nw'
+                    )
+                }
+            />
+            <StyledRepositionBorder
+                id='reposition-sw'
+                onMouseDown={e =>
+                    startReposition(
+                        e,
+                        duringRepositionSW,
+                        'nesw-resize',
+                        'reposition-sw'
+                    )
+                }
+            />
+            <StyledRepositionBorder
                 id='reposition-se'
                 onMouseDown={e =>
                     startReposition(
@@ -249,13 +249,13 @@ export default function Window({
                 }
             />
             <StyledRepositionBorder
-                id='reposition-ee'
+                id='reposition-ne'
                 onMouseDown={e =>
                     startReposition(
                         e,
-                        duringRepositionEE,
-                        'ew-resize',
-                        'reposition-ee'
+                        duringRepositionNE,
+                        'nesw-resize',
+                        'reposition-ne'
                     )
                 }
             />

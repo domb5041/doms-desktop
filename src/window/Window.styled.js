@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const borderWeight = 7;
+const cornerWeight = 13;
 
 export const StyledWindow = styled.div`
     position: absolute;
@@ -91,29 +92,29 @@ export const StyledRepositionBorder = styled.div`
     }
     &#reposition-ne {
         cursor: nesw-resize;
-        width: ${borderWeight}px;
-        height: ${borderWeight}px;
+        width: ${cornerWeight}px;
+        height: ${cornerWeight}px;
         top: 0;
         right: 0;
     }
     &#reposition-se {
         cursor: nwse-resize;
-        width: ${borderWeight}px;
-        height: ${borderWeight}px;
+        width: ${cornerWeight}px;
+        height: ${cornerWeight}px;
         bottom: 0;
         right: 0;
     }
     &#reposition-sw {
         cursor: nesw-resize;
-        width: ${borderWeight}px;
-        height: ${borderWeight}px;
+        width: ${cornerWeight}px;
+        height: ${cornerWeight}px;
         bottom: 0;
         left: 0;
     }
     &#reposition-nw {
         cursor: nwse-resize;
-        width: ${borderWeight}px;
-        height: ${borderWeight}px;
+        width: ${cornerWeight}px;
+        height: ${cornerWeight}px;
         top: 0;
         left: 0;
     }
