@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     StyledWindow,
     StyledTitleBar,
@@ -8,7 +8,7 @@ import {
 } from './Window.styled';
 import ListView from '../fileBrowse/ListView';
 
-export default function Desktop({
+export default function Window({
     close,
     name,
     activeWindow,
@@ -16,13 +16,28 @@ export default function Desktop({
     setActiveWindow,
 }) {
     const [winPosition, setWinPosition] = useState({
-        top: 100,
-        left: 100,
-        width: 400,
-        height: 300,
+        top: 0,
+        left: 0,
+        width: 0,
+        height: 0,
     });
 
+    useEffect(() => handleInitialPosition(), []);
+
     let duringRepositionListener, stopRepositionListener;
+
+    const handleInitialPosition = () => {
+        const initialWidth = window.innerWidth * 0.7;
+        const initialHeight = window.innerHeight * 0.7;
+        const initialLeft = window.innerWidth / 2 - initialWidth / 2;
+        const initialTop = window.innerHeight / 2 - initialHeight / 2;
+        setWinPosition({
+            top: initialTop,
+            left: initialLeft,
+            width: initialWidth + initialLeft,
+            height: initialHeight + initialTop,
+        });
+    };
 
     const startReposition = (e, duringFn, cursor) => {
         if (e.button === 0) {
