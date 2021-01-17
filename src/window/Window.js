@@ -7,6 +7,7 @@ import {
     StyledWindowTitle,
 } from './Window.styled';
 import ListView from '../fileBrowse/ListView';
+import TrafficLights from './TrafficLights';
 
 export default function Window({
     close,
@@ -162,11 +163,7 @@ export default function Window({
                         )
                     }
                 >
-                    <StyledTrafficLights>
-                        <div onClick={close}></div>
-                        <div></div>
-                        <div></div>
-                    </StyledTrafficLights>
+                    <TrafficLights close={close} />
                     <StyledWindowTitle>{name}</StyledWindowTitle>
                 </StyledTitleBar>
                 <ListView files={folder.files} />

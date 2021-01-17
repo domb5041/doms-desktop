@@ -35,21 +35,6 @@ export const StyledTitleBar = styled.div`
     padding: 5px 10px;
 `;
 
-export const StyledTrafficLights = styled.div`
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    & > div {
-        width: 12px;
-        height: 12px;
-        border: 2px solid black;
-        border-radius: 100%;
-        margin-right: 4px;
-        cursor: pointer;
-    }
-`;
-
 export const StyledWindowTitle = styled.div`
     display: flex;
     align-items: center;
