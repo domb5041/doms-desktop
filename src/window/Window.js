@@ -27,16 +27,33 @@ export default function Window({
 
     let duringRepositionListener, stopRepositionListener;
 
+    const desktopArea = document
+        .getElementById('desktop-area')
+        .getBoundingClientRect();
+
     const handleInitialPosition = () => {
-        const initialWidth = window.innerWidth * 0.7;
-        const initialHeight = window.innerHeight * 0.7;
-        const initialLeft = window.innerWidth / 2 - initialWidth / 2;
-        const initialTop = window.innerHeight / 2 - initialHeight / 2;
+        const width = desktopArea.width * 0.7;
+        const height = desktopArea.height * 0.7;
+        const left = desktopArea.width / 2 - width / 2;
+        const top = desktopArea.height / 2 - height / 2;
         setWinPosition({
-            top: initialTop,
-            left: initialLeft,
-            width: initialWidth + initialLeft,
-            height: initialHeight + initialTop,
+            top: top,
+            left: left,
+            width: width + left,
+            height: height + top,
+        });
+    };
+
+    const maximizeWindow = () => {
+        const width = desktopArea.width;
+        const height = desktopArea.height - 102;
+        const left = 0;
+        const top = 0;
+        setWinPosition({
+            top: top,
+            left: left,
+            width: width,
+            height: height,
         });
     };
 
@@ -71,40 +88,40 @@ export default function Window({
     const duringRepositionSE = e => {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
-        newPosition.height = e.pageY;
+        newPosition.height = e.pageY - desktopArea.top;
         handleSetReposition(e, newPosition);
     };
 
     const duringRepositionNW = e => {
         const newPosition = { ...winPosition };
         newPosition.left = e.pageX;
-        newPosition.top = e.pageY;
+        newPosition.top = e.pageY - desktopArea.top;
         handleSetReposition(e, newPosition);
     };
 
     const duringRepositionNE = e => {
         const newPosition = { ...winPosition };
         newPosition.width = e.pageX;
-        newPosition.top = e.pageY;
+        newPosition.top = e.pageY - desktopArea.top;
         handleSetReposition(e, newPosition);
     };
 
     const duringRepositionSW = e => {
         const newPosition = { ...winPosition };
         newPosition.left = e.pageX;
-        newPosition.height = e.pageY;
+        newPosition.height = e.pageY - desktopArea.top;
         handleSetReposition(e, newPosition);
     };
 
     const duringRepositionNN = e => {
         const newPosition = { ...winPosition };
-        newPosition.top = e.pageY;
+        newPosition.top = e.pageY - desktopArea.top;
         handleSetReposition(e, newPosition);
     };
 
     const duringRepositionSS = e => {
         const newPosition = { ...winPosition };
-        newPosition.height = e.pageY;
+        newPosition.height = e.pageY - desktopArea.top;
         handleSetReposition(e, newPosition);
     };
 
@@ -121,8 +138,10 @@ export default function Window({
     };
 
     const handleSetReposition = (e, newPosition) => {
-        const insideWindowX = e.pageX < window.innerWidth && e.pageX > 0;
-        const insideWindowY = e.pageY < window.innerHeight && e.pageY > 0;
+        const insideWindowX =
+            e.pageX < desktopArea.right && e.pageX > desktopArea.left;
+        const insideWindowY =
+            e.pageY < desktopArea.bottom && e.pageY > desktopArea.top;
         if (insideWindowX && insideWindowY) {
             setWinPosition(newPosition);
             e.stopPropagation();
@@ -139,8 +158,8 @@ export default function Window({
     const winPositionStyle = {
         left: winPosition.left,
         top: winPosition.top,
-        right: `calc(100% - ${winPosition.width}px)`,
-        bottom: `calc(100% - ${winPosition.height}px)`,
+        right: desktopArea.width - winPosition.width,
+        bottom: desktopArea.height - winPosition.height,
     };
 
     return (
@@ -163,7 +182,10 @@ export default function Window({
                         )
                     }
                 >
-                    <TrafficLights close={close} />
+                    <TrafficLights
+                        close={close}
+                        maximizeWindow={maximizeWindow}
+                    />
                     <StyledWindowTitle>{name}</StyledWindowTitle>
                 </StyledTitleBar>
                 <ListView files={folder.files} />

@@ -14,10 +14,11 @@ const StyledDesktop = styled.div`
     bottom: 0;
     display: flex;
     flex-direction: column;
-    & .desktop-area {
+    & #desktop-area {
         display: flex;
         padding: 10px;
         flex: 1;
+        position: relative;
     }
 `;
 
@@ -26,7 +27,7 @@ export default function Desktop() {
     return (
         <StyledDesktop>
             <MenuBar />
-            <div className='desktop-area'>
+            <div id='desktop-area'>
                 {fileStructure.map(folder => (
                     <Folder
                         name={folder.name}

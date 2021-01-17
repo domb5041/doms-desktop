@@ -18,10 +18,10 @@ export const StyledWindow = styled.div`
         border: 2px solid black;
         background: white;
         position: absolute;
-        top: ${borderWeight / 2 - 2}px;
-        left: ${borderWeight / 2 - 2}px;
-        right: ${borderWeight / 2 - 2}px;
-        bottom: ${borderWeight / 2 - 2}px;
+        top: 1px;
+        left: 1px;
+        right: 1px;
+        bottom: 1px;
         display: flex;
         flex-direction: column;
     }

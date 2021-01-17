@@ -10,6 +10,8 @@ const StyledMenuBar = styled.div`
     display: flex;
     align-items: stretch;
     padding: 0 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 4000;
 `;
 
 const StyledMenuItem = styled.div`
