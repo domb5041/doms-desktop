@@ -21,6 +21,7 @@ const StyledTrafficLights = styled.div`
             width: 2px;
             left: 50%;
             opacity: 0;
+            border-radius: 5px;
         }
     }
     &:hover > div > div {
