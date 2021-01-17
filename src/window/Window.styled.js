@@ -32,12 +32,11 @@ export const StyledTitleBar = styled.div`
     width: 100%;
     height: 35px;
     display: flex;
+    align-items: center;
     padding: 5px 10px;
 `;
 
 export const StyledWindowTitle = styled.div`
-    display: flex;
-    align-items: center;
     font-size: 18px;
     font-weight: bold;
     margin: 0 10px;
