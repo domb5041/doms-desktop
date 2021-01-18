@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-const borderWeight = 7;
-const cornerWeight = 13;
-
 export const StyledWindow = styled.div`
     position: absolute;
     min-width: 200px;
@@ -40,66 +37,4 @@ export const StyledWindowTitle = styled.div`
     font-size: 18px;
     font-weight: bold;
     margin: 0 10px;
-`;
-
-export const StyledRepositionBorder = styled.div`
-    position: absolute;
-    opacity: 0;
-    background-color: red;
-    &#reposition-ww {
-        cursor: ew-resize;
-        width: ${borderWeight}px;
-        top: ${borderWeight}px;
-        left: 0;
-        bottom: ${borderWeight}px;
-    }
-    &#reposition-ee {
-        cursor: ew-resize;
-        width: ${borderWeight}px;
-        top: ${borderWeight}px;
-        right: 0;
-        bottom: ${borderWeight}px;
-    }
-    &#reposition-nn {
-        cursor: ns-resize;
-        height: ${borderWeight}px;
-        top: 0;
-        left: ${borderWeight}px;
-        right: ${borderWeight}px;
-    }
-    &#reposition-ss {
-        cursor: ns-resize;
-        height: ${borderWeight}px;
-        bottom: 0;
-        left: ${borderWeight}px;
-        right: ${borderWeight}px;
-    }
-    &#reposition-ne {
-        cursor: nesw-resize;
-        width: ${cornerWeight}px;
-        height: ${cornerWeight}px;
-        top: 0;
-        right: 0;
-    }
-    &#reposition-se {
-        cursor: nwse-resize;
-        width: ${cornerWeight}px;
-        height: ${cornerWeight}px;
-        bottom: 0;
-        right: 0;
-    }
-    &#reposition-sw {
-        cursor: nesw-resize;
-        width: ${cornerWeight}px;
-        height: ${cornerWeight}px;
-        bottom: 0;
-        left: 0;
-    }
-    &#reposition-nw {
-        cursor: nwse-resize;
-        width: ${cornerWeight}px;
-        height: ${cornerWeight}px;
-        top: 0;
-        left: 0;
-    }
 `;

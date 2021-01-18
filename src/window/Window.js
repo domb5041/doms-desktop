@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import {
     StyledWindow,
     StyledTitleBar,
-    StyledRepositionBorder,
-    StyledTrafficLights,
     StyledWindowTitle,
 } from './Window.styled';
 import ListView from '../fileBrowse/ListView';
 import TrafficLights from './TrafficLights';
+import RepositionFrame from './RepositionFrame';
 
 export default function Window({
     close,
@@ -190,93 +189,16 @@ export default function Window({
                 </StyledTitleBar>
                 <ListView files={folder.files} />
             </div>
-            <StyledRepositionBorder
-                id='reposition-ww'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionWW,
-                        'ew-resize',
-                        'reposition-ww'
-                    )
-                }
-            />
-            <StyledRepositionBorder
-                id='reposition-nn'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionNN,
-                        'ns-resize',
-                        'reposition-nn'
-                    )
-                }
-            />
-            <StyledRepositionBorder
-                id='reposition-ss'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionSS,
-                        'ns-resize',
-                        'reposition-ss'
-                    )
-                }
-            />
-            <StyledRepositionBorder
-                id='reposition-ee'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionEE,
-                        'ew-resize',
-                        'reposition-ee'
-                    )
-                }
-            />
-            <StyledRepositionBorder
-                id='reposition-nw'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionNW,
-                        'nwse-resize',
-                        'reposition-nw'
-                    )
-                }
-            />
-            <StyledRepositionBorder
-                id='reposition-sw'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionSW,
-                        'nesw-resize',
-                        'reposition-sw'
-                    )
-                }
-            />
-            <StyledRepositionBorder
-                id='reposition-se'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionSE,
-                        'nwse-resize',
-                        'reposition-se'
-                    )
-                }
-            />
-            <StyledRepositionBorder
-                id='reposition-ne'
-                onMouseDown={e =>
-                    startReposition(
-                        e,
-                        duringRepositionNE,
-                        'nesw-resize',
-                        'reposition-ne'
-                    )
-                }
+            <RepositionFrame
+                start={startReposition}
+                duringNN={duringRepositionNN}
+                duringNE={duringRepositionNE}
+                duringEE={duringRepositionEE}
+                duringSE={duringRepositionSE}
+                duringSS={duringRepositionSS}
+                duringSW={duringRepositionSW}
+                duringWW={duringRepositionWW}
+                duringNW={duringRepositionNW}
             />
         </StyledWindow>
     );
