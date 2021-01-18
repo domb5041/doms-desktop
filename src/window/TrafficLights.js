@@ -48,7 +48,7 @@ const StyledTrafficLights = styled.div`
     }
 `;
 
-export default function Window({ close, maximizeWindow }) {
+export default function TrafficLights({ close, maximizeWindow }) {
     return (
         <StyledTrafficLights>
             <div className='close-symbol' onClick={close}>

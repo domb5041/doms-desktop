@@ -1,12 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import {
-    StyledWindow,
-    StyledTitleBar,
-    StyledWindowTitle,
-} from './Window.styled';
 import ListView from '../fileBrowse/ListView';
-import TrafficLights from './TrafficLights';
 import RepositionFrame from './RepositionFrame';
+import TitleBar from './TitleBar';
+import styled from 'styled-components';
+
+export const StyledWindow = styled.div`
+    position: absolute;
+    min-width: 200px;
+    min-height: 100px;
+    z-index: ${props => (props.activeWindow === props.folderId ? 3000 : 1)};
+    & .window-inner {
+        box-shadow: ${props =>
+            props.activeWindow === props.folderId
+                ? '0 5px 20px rgba(0, 0, 0, 0.2)'
+                : 'none'};
+        border-radius: 10px;
+        overflow: hidden;
+        border: 2px solid black;
+        background: white;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        right: 1px;
+        bottom: 1px;
+        display: flex;
+        flex-direction: column;
+    }
+`;
 
 export default function Window({
     close,
@@ -164,29 +184,18 @@ export default function Window({
     return (
         <StyledWindow
             style={winPositionStyle}
-            id='window-container'
             activeWindow={activeWindow}
             folderId={folder.id}
             onClick={() => setActiveWindow(folder.id)}
         >
             <div className='window-inner'>
-                <StyledTitleBar
-                    id='reposition-all'
-                    onMouseDown={e =>
-                        startReposition(
-                            e,
-                            duringRepositionALL,
-                            'default',
-                            'window-container'
-                        )
-                    }
-                >
-                    <TrafficLights
-                        close={close}
-                        maximizeWindow={maximizeWindow}
-                    />
-                    <StyledWindowTitle>{name}</StyledWindowTitle>
-                </StyledTitleBar>
+                <TitleBar
+                    close={close}
+                    name={name}
+                    maximizeWindow={maximizeWindow}
+                    startReposition={startReposition}
+                    duringRepositionALL={duringRepositionALL}
+                />
                 <ListView files={folder.files} />
             </div>
             <RepositionFrame
