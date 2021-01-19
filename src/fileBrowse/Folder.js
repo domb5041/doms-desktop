@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Window from '../window/Window';
+import { CSSTransition } from 'react-transition-group';
 
 const StyledFolder = styled.div`
     cursor: pointer;
@@ -27,7 +28,7 @@ const StyledFolder = styled.div`
     }
 `;
 
-export default function Desktop({
+export default function Folder({
     name,
     activeWindow,
     folder,
@@ -45,7 +46,12 @@ export default function Desktop({
                 <div className='folder-icon'></div>
                 <div className='folder-label'>{name}</div>
             </StyledFolder>
-            {isOpen && (
+            <CSSTransition
+                in={isOpen}
+                unmountOnExit
+                timeout={100}
+                classNames='window'
+            >
                 <Window
                     close={() => setIsOpen(false)}
                     name={name}
@@ -53,7 +59,7 @@ export default function Desktop({
                     folder={folder}
                     setActiveWindow={setActiveWindow}
                 />
-            )}
+            </CSSTransition>
         </>
     );
 }

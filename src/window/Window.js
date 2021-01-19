@@ -26,6 +26,24 @@ export const StyledWindow = styled.div`
         display: flex;
         flex-direction: column;
     }
+    &.window-enter {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    &.window-enter-active {
+        opacity: 1;
+        transition: 0.1s;
+        transform: scale(1);
+    }
+    &.window-exit {
+        opacity: 1;
+        transform: scale(1);
+    }
+    &.window-exit-active {
+        opacity: 0;
+        transition: 0.1s;
+        transform: scale(0.8);
+    }
 `;
 
 export default function Window({
