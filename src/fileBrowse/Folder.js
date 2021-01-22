@@ -28,17 +28,12 @@ const StyledFolder = styled.div`
     }
 `;
 
-export default function Folder({
-    name,
-    activeWindow,
-    folder,
-    setActiveWindow,
-}) {
+export default function Folder({ name, windowOrder, folder, setWindowOrder }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpenFolder = () => {
         setIsOpen(true);
-        setActiveWindow(folder.id);
+        setWindowOrder(folder.id);
     };
     return (
         <>
@@ -55,9 +50,9 @@ export default function Folder({
                 <Window
                     close={() => setIsOpen(false)}
                     name={name}
-                    activeWindow={activeWindow}
+                    windowOrder={windowOrder}
                     folder={folder}
-                    setActiveWindow={setActiveWindow}
+                    setWindowOrder={setWindowOrder}
                 />
             </CSSTransition>
         </>

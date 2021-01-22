@@ -23,7 +23,18 @@ const StyledDesktop = styled.div`
 `;
 
 export default function Desktop() {
-    const [activeWindow, setActiveWindow] = useState('2');
+    const [windowOrder, setWindowOrder] = useState(
+        fileStructure.map(folder => folder.id)
+    );
+
+    const handleSetWindowOrder = id => {
+        const windows = [...windowOrder];
+        const idToMove = windows.indexOf(id);
+        windows.splice(idToMove, 1);
+        windows.unshift(id);
+        setWindowOrder(windows);
+    };
+
     return (
         <StyledDesktop>
             <MenuBar />
@@ -31,8 +42,8 @@ export default function Desktop() {
                 {fileStructure.map(folder => (
                     <Folder
                         name={folder.name}
-                        activeWindow={activeWindow}
-                        setActiveWindow={id => setActiveWindow(id)}
+                        windowOrder={windowOrder}
+                        setWindowOrder={id => handleSetWindowOrder(id)}
                         folder={folder}
                     />
                 ))}

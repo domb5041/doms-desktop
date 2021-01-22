@@ -8,10 +8,10 @@ export const StyledWindow = styled.div`
     position: absolute;
     min-width: 200px;
     min-height: 100px;
-    z-index: ${props => (props.activeWindow === props.folderId ? 3000 : 1)};
+    z-index: ${props => 3000 - props.windowOrder.indexOf(props.folderId)};
     & .window-inner {
         box-shadow: ${props =>
-            props.activeWindow === props.folderId
+            props.windowOrder[0] === props.folderId
                 ? '0 5px 20px rgba(0, 0, 0, 0.2)'
                 : 'none'};
         border-radius: 10px;
@@ -49,9 +49,9 @@ export const StyledWindow = styled.div`
 export default function Window({
     close,
     name,
-    activeWindow,
+    windowOrder,
     folder,
-    setActiveWindow,
+    setWindowOrder,
 }) {
     const [winPosition, setWinPosition] = useState({
         top: 0,
@@ -96,7 +96,7 @@ export default function Window({
 
     const startReposition = (e, duringFn, cursor) => {
         if (e.button === 0) {
-            setActiveWindow(folder.id);
+            setWindowOrder(folder.id);
             const relX = e.pageX - winPosition.left;
             const relY = e.pageY - winPosition.top;
             stopRepositionListener = () => {
@@ -202,9 +202,9 @@ export default function Window({
     return (
         <StyledWindow
             style={winPositionStyle}
-            activeWindow={activeWindow}
+            windowOrder={windowOrder}
             folderId={folder.id}
-            onClick={() => setActiveWindow(folder.id)}
+            onClick={() => setWindowOrder(folder.id)}
         >
             <div className='window-inner'>
                 <TitleBar
