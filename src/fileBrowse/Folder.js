@@ -14,10 +14,24 @@ const StyledFolder = styled.div`
     left: 30px;
     & .folder-icon {
         width: 60px;
-        height: 50px;
+        height: 45px;
         border: 2px solid black;
         border-radius: 7px;
+        border-top-left-radius: 0;
         background-color: white;
+        position: relative;
+        & > div {
+            position: absolute;
+            background-color: white;
+            left: -2px;
+            top: -8px;
+            width: 25px;
+            height: 6px;
+            border: 2px solid black;
+            border-bottom: none;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+        }
     }
     & .folder-label {
         text-align: center;
@@ -47,7 +61,9 @@ export default function Folder({
     return (
         <>
             <StyledFolder onDoubleClick={handleOpenFolder} index={index}>
-                <div className='folder-icon'></div>
+                <div className='folder-icon'>
+                    <div />
+                </div>
                 <div className='folder-label'>{name}</div>
             </StyledFolder>
             <CSSTransition
