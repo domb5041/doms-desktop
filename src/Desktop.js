@@ -15,7 +15,6 @@ const StyledDesktop = styled.div`
     display: flex;
     flex-direction: column;
     & #desktop-area {
-        display: flex;
         padding: 10px;
         flex: 1;
         position: relative;
@@ -39,8 +38,10 @@ export default function Desktop() {
         <StyledDesktop>
             <MenuBar />
             <div id='desktop-area'>
-                {fileStructure.map(folder => (
+                {fileStructure.map((folder, i) => (
                     <Folder
+                        key={i}
+                        index={i}
                         name={folder.name}
                         windowOrder={windowOrder}
                         setWindowOrder={id => handleSetWindowOrder(id)}

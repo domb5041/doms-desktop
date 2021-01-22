@@ -9,6 +9,9 @@ const StyledFolder = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: absolute;
+    top: ${props => props.index * 110 + 30}px;
+    left: 30px;
     & .folder-icon {
         width: 60px;
         height: 50px;
@@ -28,7 +31,13 @@ const StyledFolder = styled.div`
     }
 `;
 
-export default function Folder({ name, windowOrder, folder, setWindowOrder }) {
+export default function Folder({
+    name,
+    windowOrder,
+    folder,
+    setWindowOrder,
+    index,
+}) {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpenFolder = () => {
@@ -37,7 +46,7 @@ export default function Folder({ name, windowOrder, folder, setWindowOrder }) {
     };
     return (
         <>
-            <StyledFolder onDoubleClick={handleOpenFolder}>
+            <StyledFolder onDoubleClick={handleOpenFolder} index={index}>
                 <div className='folder-icon'></div>
                 <div className='folder-label'>{name}</div>
             </StyledFolder>
