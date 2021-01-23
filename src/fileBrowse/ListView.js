@@ -65,6 +65,7 @@ const StyledFile = styled.div`
             : 'whitesmoke'};
     color: ${props => (props.activeFile ? 'white' : 'black')};
     display: flex;
+    user-select: none;
     cursor: pointer;
     & > div {
         flex: 1;

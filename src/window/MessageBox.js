@@ -17,6 +17,7 @@ const StyledMessageBox = styled.div`
     & .message-block {
         padding: 10px;
         min-height: 100px;
+        user-select: none;
     }
     & .message-confirm {
         margin: 10px;
@@ -58,7 +59,7 @@ const StyledMessageBox = styled.div`
 const StyledShade = styled.div`
     position: fixed;
     inset: 0 0 0 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 8000;
     &.shade-enter {
         opacity: 0;
