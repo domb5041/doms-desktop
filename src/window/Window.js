@@ -1,10 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import ListView from '../fileBrowse/ListView';
 import RepositionFrame from './RepositionFrame';
 import TitleBar from './TitleBar';
 import styled from 'styled-components';
+import { CSSTransition } from 'react-transition-group';
 
-export const StyledWindow = styled.div`
+export default function TransitionWrapper({
+    isOpen,
+    close,
+    name,
+    folder,
+    windowOrder,
+    setWindowOrder,
+    children,
+}) {
+    return (
+        <CSSTransition
+            in={isOpen}
+            unmountOnExit
+            timeout={100}
+            classNames='window'
+        >
+            <Window
+                close={close}
+                name={name}
+                windowOrder={windowOrder}
+                folder={folder}
+                setWindowOrder={setWindowOrder}
+            >
+                {children}
+            </Window>
+        </CSSTransition>
+    );
+}
+
+const StyledWindow = styled.div`
     position: absolute;
     min-width: 200px;
     min-height: 100px;
@@ -46,12 +75,13 @@ export const StyledWindow = styled.div`
     }
 `;
 
-export default function Window({
+function Window({
     close,
     name,
     windowOrder,
     folder,
     setWindowOrder,
+    children,
 }) {
     const [winPosition, setWinPosition] = useState({
         top: 0,
@@ -214,7 +244,7 @@ export default function Window({
                     startReposition={startReposition}
                     duringRepositionALL={duringRepositionALL}
                 />
-                <ListView files={folder.files} />
+                {children}
             </div>
             <RepositionFrame
                 start={startReposition}

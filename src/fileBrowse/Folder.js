@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Window from '../window/Window';
+import ListView from '../fileBrowse/ListView';
 import { CSSTransition } from 'react-transition-group';
 
 const StyledFolder = styled.div`
@@ -66,20 +67,16 @@ export default function Folder({
                 </div>
                 <div className='folder-label'>{name}</div>
             </StyledFolder>
-            <CSSTransition
-                in={isOpen}
-                unmountOnExit
-                timeout={100}
-                classNames='window'
+            <Window
+                close={() => setIsOpen(false)}
+                name={name}
+                windowOrder={windowOrder}
+                folder={folder}
+                setWindowOrder={setWindowOrder}
+                isOpen={isOpen}
             >
-                <Window
-                    close={() => setIsOpen(false)}
-                    name={name}
-                    windowOrder={windowOrder}
-                    folder={folder}
-                    setWindowOrder={setWindowOrder}
-                />
-            </CSSTransition>
+                <ListView files={folder.files} />
+            </Window>
         </>
     );
 }
