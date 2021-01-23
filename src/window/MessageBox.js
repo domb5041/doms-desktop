@@ -77,7 +77,7 @@ const StyledShade = styled.div`
     }
 `;
 
-export default function MessageBox({ isOpen, close }) {
+export default function MessageBox({ isOpen, close, message }) {
     return (
         <>
             <CSSTransition
@@ -87,13 +87,7 @@ export default function MessageBox({ isOpen, close }) {
                 classNames='messagebox'
             >
                 <StyledMessageBox>
-                    <div className='message-block'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Ipsa error ex ullam ipsam. Perspiciatis doloribus
-                        quisquam soluta dignissimos pariatur possimus tempore
-                        laudantium atque facilis. Doloribus ex illo sunt vitae
-                        labore?
-                    </div>
+                    <div className='message-block'>{message}</div>
                     <div className='message-confirm' onClick={close}>
                         Ok
                     </div>

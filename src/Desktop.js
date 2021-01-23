@@ -4,6 +4,7 @@ import Folder from './fileBrowse/Folder';
 import fileStructure from './data/fileStructure';
 import MenuBar from './menuBar/MenuBar';
 import Dock from './dock/Dock';
+import MessageBox from './window/MessageBoxContainer';
 
 const StyledDesktop = styled.div`
     background-color: whitesmoke;
@@ -50,6 +51,7 @@ export default function Desktop() {
                 ))}
             </div>
             <Dock />
+            <MessageBox />
         </StyledDesktop>
     );
 }
