@@ -49,9 +49,9 @@ const StyledApp = styled.div`
     }
 `;
 
-export default function AppIcon({ name, open }) {
+export default function AppIcon({ name, open, onClick }) {
     return (
-        <StyledApp>
+        <StyledApp onClick={onClick}>
             <div className='app-tooltip'>{name}</div>
             <div className='app-inner'></div>
             {open && <div className='app-dot'></div>}

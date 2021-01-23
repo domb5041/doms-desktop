@@ -21,14 +21,29 @@ const StyledDock = styled.div`
     }
 `;
 
-export default function Dock() {
+export default function Dock({ openMessageBox, setMessageBoxText }) {
+    const handleOpenMessageBox = app => {
+        const text = app + ' is not installed';
+        openMessageBox();
+        setMessageBoxText(text);
+    };
+
     return (
         <StyledDock>
             <AppIcon name='Finder' open />
-            <AppIcon name='System Preferences' />
-            <AppIcon name='Mail' />
-            <AppIcon name='Safari' />
-            <AppIcon name='Notes' />
+            <AppIcon
+                name='GarageBand'
+                onClick={() => handleOpenMessageBox('GarageBand')}
+            />
+            <AppIcon name='Mail' onClick={() => handleOpenMessageBox('Mail')} />
+            <AppIcon
+                name='Safari'
+                onClick={() => handleOpenMessageBox('Safari')}
+            />
+            <AppIcon
+                name='Notes'
+                onClick={() => handleOpenMessageBox('Notes')}
+            />
         </StyledDock>
     );
 }
