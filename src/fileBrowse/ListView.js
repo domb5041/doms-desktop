@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { formatDate, formatBytes } from '../utilities';
+import MessageBox from '../window/MessageBox';
 
 const StyledListView = styled.div`
     display: flex;
@@ -76,6 +77,7 @@ const StyledFile = styled.div`
 
 export default function ListView({ files }) {
     const [activeFile, setActiveFile] = useState(null);
+    const [openFile, setOpenFile] = useState(null);
     const [files2, setFiles2] = useState(files);
     const [sortBy, setSortBy] = useState([null, false]);
 
@@ -139,21 +141,28 @@ export default function ListView({ files }) {
             </StyledListHeader>
             <StyledFiles>
                 {files2.map((file, i) => (
-                    <StyledFile
-                        evenRow={i % 2 === 0}
-                        onClick={() => setActiveFile(file.id)}
-                        activeFile={file.id === activeFile}
-                    >
-                        <div>{file.name}</div>
-                        <div>
-                            {formatDate(
-                                file.dateModified,
-                                'dd mmm yyyy at hh:mm'
-                            )}
-                        </div>
-                        <div>{formatBytes(file.size)}</div>
-                        <div>{file.type}</div>
-                    </StyledFile>
+                    <>
+                        <StyledFile
+                            evenRow={i % 2 === 0}
+                            onClick={() => setActiveFile(file.id)}
+                            onDoubleClick={() => setOpenFile(file.id)}
+                            activeFile={file.id === activeFile}
+                        >
+                            <div>{file.name}</div>
+                            <div>
+                                {formatDate(
+                                    file.dateModified,
+                                    'dd mmm yyyy at hh:mm'
+                                )}
+                            </div>
+                            <div>{formatBytes(file.size)}</div>
+                            <div>{file.type}</div>
+                        </StyledFile>
+                        <MessageBox
+                            isOpen={openFile === file.id}
+                            close={() => setOpenFile(null)}
+                        />
+                    </>
                 ))}
             </StyledFiles>
         </StyledListView>
