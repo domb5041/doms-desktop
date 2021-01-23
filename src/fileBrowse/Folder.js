@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Window from '../window/Window';
-import ListView from '../fileBrowse/ListView';
-import { CSSTransition } from 'react-transition-group';
+import ListView from '../fileBrowse/ListViewContainer';
 
 const StyledFolder = styled.div`
     cursor: pointer;

@@ -14,13 +14,13 @@ const StyledMessageBox = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    padding: 10px;
     & .message-block {
-        padding: 10px;
+        margin: 10px 0;
         min-height: 100px;
         user-select: none;
     }
     & .message-confirm {
-        margin: 10px;
         font-size: 16px;
         font-weight: bold;
         padding: 5px 10px;

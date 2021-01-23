@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { formatDate, formatBytes } from '../utilities';
-import MessageBox from '../window/MessageBox';
 
 const StyledListView = styled.div`
     display: flex;
@@ -76,9 +75,8 @@ const StyledFile = styled.div`
     }
 `;
 
-export default function ListView({ files }) {
+export default function ListView({ files, openMessageBox, setMessageBoxText }) {
     const [activeFile, setActiveFile] = useState(null);
-    const [openFile, setOpenFile] = useState(null);
     const [files2, setFiles2] = useState(files);
     const [sortBy, setSortBy] = useState([null, false]);
 
@@ -117,6 +115,12 @@ export default function ListView({ files }) {
         return null;
     };
 
+    const handleOpenMessageBox = fileName => {
+        const text = fileName + " couldn't be found";
+        openMessageBox();
+        setMessageBoxText(text);
+    };
+
     return (
         <StyledListView>
             <StyledListHeader>
@@ -146,7 +150,9 @@ export default function ListView({ files }) {
                         <StyledFile
                             evenRow={i % 2 === 0}
                             onClick={() => setActiveFile(file.id)}
-                            onDoubleClick={() => setOpenFile(file.id)}
+                            onDoubleClick={() =>
+                                handleOpenMessageBox(file.name)
+                            }
                             activeFile={file.id === activeFile}
                         >
                             <div>{file.name}</div>
@@ -159,10 +165,6 @@ export default function ListView({ files }) {
                             <div>{formatBytes(file.size)}</div>
                             <div>{file.type}</div>
                         </StyledFile>
-                        <MessageBox
-                            isOpen={openFile === file.id}
-                            close={() => setOpenFile(null)}
-                        />
                     </>
                 ))}
             </StyledFiles>
