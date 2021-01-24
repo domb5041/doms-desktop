@@ -30,19 +30,26 @@ export default function Dock({ openMessageBox, setMessageBoxText }) {
 
     return (
         <StyledDock>
-            <AppIcon name='Finder' open />
+            <AppIcon name='Finder' open letter='F' />
             <AppIcon
                 name='GarageBand'
                 onClick={() => handleOpenMessageBox('GarageBand')}
+                letter='G'
             />
-            <AppIcon name='Mail' onClick={() => handleOpenMessageBox('Mail')} />
+            <AppIcon
+                name='Mail'
+                onClick={() => handleOpenMessageBox('Mail')}
+                letter='M'
+            />
             <AppIcon
                 name='Safari'
                 onClick={() => handleOpenMessageBox('Safari')}
+                letter='S'
             />
             <AppIcon
                 name='Notes'
                 onClick={() => handleOpenMessageBox('Notes')}
+                letter='N'
             />
         </StyledDock>
     );
