@@ -3,7 +3,8 @@ import actions from '../actions';
 import MenuBar from './MenuBar';
 
 const mapDispatchToProps = dispatch => ({
-    setMessageBox: text => dispatch(actions.setMessageBox(text)),
+    randomMessageBox: randomNumber =>
+        dispatch(actions.randomMessageBox(randomNumber)),
 });
 
 export default connect(null, mapDispatchToProps)(MenuBar);

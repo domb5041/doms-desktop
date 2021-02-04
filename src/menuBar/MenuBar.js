@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import menuItems from '../data/menuItems';
-import { formatDate } from '../utilities';
+import { formatDate, randomNumber } from '../utilities';
 
 const StyledMenuBar = styled.div`
     height: 30px;
@@ -61,7 +61,7 @@ const StyledHiddenClose = styled.div`
     z-index: 4000;
 `;
 
-export default function MenuBar({setMessageBox}) {
+export default function MenuBar({randomMessageBox}) {
     const [contextMenu, setContextMenu] = useState({
         id: '',
         top: 0,
@@ -87,7 +87,7 @@ export default function MenuBar({setMessageBox}) {
 
     const handleContextClick = () => {
         closeMenu();
-        setMessageBox('there was an error');
+        randomMessageBox(randomNumber());
     }
 
     return (
