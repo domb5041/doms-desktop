@@ -21,33 +21,28 @@ const StyledDock = styled.div`
     }
 `;
 
-export default function Dock({ setMessageBox }) {
-    const handleOpenMessageBox = app => {
-        const text = app + ' is not installed';
-        setMessageBox(text);
-    };
-
+export default function Dock({ randomMessageBox }) {
     return (
         <StyledDock>
             <AppIcon name='Finder' open iconCode='fas fa-smile' />
             <AppIcon
                 name='GarageBand'
-                onClick={() => handleOpenMessageBox('GarageBand')}
+                onClick={randomMessageBox}
                 iconCode='fas fa-guitar'
             />
             <AppIcon
                 name='Mail'
-                onClick={() => handleOpenMessageBox('Mail')}
+                onClick={randomMessageBox}
                 iconCode='fas fa-envelope'
             />
             <AppIcon
                 name='Safari'
-                onClick={() => handleOpenMessageBox('Safari')}
+                onClick={randomMessageBox}
                 iconCode='fas fa-compass'
             />
             <AppIcon
                 name='Notes'
-                onClick={() => handleOpenMessageBox('Notes')}
+                onClick={randomMessageBox}
                 iconCode='fas fa-clipboard'
             />
         </StyledDock>

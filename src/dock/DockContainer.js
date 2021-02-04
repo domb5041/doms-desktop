@@ -3,7 +3,7 @@ import actions from '../actions';
 import Dock from './Dock';
 
 const mapDispatchToProps = dispatch => ({
-    setMessageBox: text => dispatch(actions.setMessageBox(text)),
+    randomMessageBox: () => dispatch(actions.randomMessageBox()),
 });
 
 export default connect(null, mapDispatchToProps)(Dock);

@@ -39,7 +39,3 @@ export const formatBytes = bytes => {
     const i = Math.floor(Math.log(bytes) / Math.log(1024));
     return Number((bytes / Math.pow(1024, i)).toFixed(1)) * 1 + ' ' + unit[i];
 };
-
-export const randomNumber = (max = 4) => {
-    return Math.floor(Math.random() * max);
-}

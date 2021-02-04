@@ -75,7 +75,7 @@ const StyledFile = styled.div`
     }
 `;
 
-export default function ListView({ files, setMessageBox }) {
+export default function ListView({ files, randomMessageBox }) {
     const [activeFile, setActiveFile] = useState(null);
     const [files2, setFiles2] = useState(files);
     const [sortBy, setSortBy] = useState([null, false]);
@@ -115,11 +115,6 @@ export default function ListView({ files, setMessageBox }) {
         return null;
     };
 
-    const handleOpenMessageBox = fileName => {
-        const text = fileName + " couldn't be found";
-        setMessageBox(text);
-    };
-
     return (
         <StyledListView>
             <StyledListHeader>
@@ -149,9 +144,7 @@ export default function ListView({ files, setMessageBox }) {
                         <StyledFile
                             evenRow={i % 2 === 0}
                             onClick={() => setActiveFile(file.id)}
-                            onDoubleClick={() =>
-                                handleOpenMessageBox(file.name)
-                            }
+                            onDoubleClick={randomMessageBox}
                             activeFile={file.id === activeFile}
                         >
                             <div>{file.name}</div>

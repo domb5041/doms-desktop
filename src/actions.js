@@ -1,11 +1,13 @@
-
 const randomErrors = [
-    {text: 'a', icon: 'fas fa-star'},
-    {text: 'b', icon: 'fas fa-star'},
-    {text: 'c', icon: 'fas fa-star'},
-    {text: 'd', icon: 'fas fa-star'},
-    {text: 'e', icon: 'fas fa-star'},
-]
+    {
+        text: 'Simulation boundary breach - commencing incineration.',
+        icon: 'fas fa-fire-extinguisher',
+    },
+    { text: 'UNDER CONSTRUCTION', icon: 'fas fa-tools' },
+    { text: "This doesn't do anything yet.", icon: 'fas fa-cat' },
+    { text: 'FATAL ERROR', icon: 'fas fa-skull-crossbones' },
+    { text: 'Closed for cleaning', icon: 'fas fa-soap' },
+];
 
 export default {
     closeMessageBox: () => ({
@@ -14,11 +16,14 @@ export default {
     setMessageBox: (text, icon) => ({
         type: 'SET_MESSAGE_BOX',
         text: text,
-        icon: icon || 'fas fa-info-circle'
+        icon: icon || 'fas fa-info-circle',
     }),
-    randomMessageBox: (i) => ({
-        type: 'SET_MESSAGE_BOX',
-        text: randomErrors[i].text,
-        icon: randomErrors[i].icon
-    }),
+    randomMessageBox: () => {
+        const i = Math.floor(Math.random() * randomErrors.length);
+        return {
+            type: 'SET_MESSAGE_BOX',
+            text: randomErrors[i].text,
+            icon: randomErrors[i].icon,
+        };
+    },
 };
