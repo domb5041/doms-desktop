@@ -21,7 +21,7 @@ const StyledApp = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 30px;
+        font-size: 35px;
     }
     @keyframes bounce {
         0% {
@@ -70,7 +70,7 @@ const StyledApp = styled.div`
     }
 `;
 
-export default function AppIcon({ name, open, onClick, letter }) {
+export default function AppIcon({ name, open, onClick, iconCode }) {
     const [bouncing, setBouncing] = useState(false);
 
     const handleClick = () => {
@@ -82,7 +82,7 @@ export default function AppIcon({ name, open, onClick, letter }) {
     return (
         <StyledApp onClick={open ? null : handleClick} bouncing={bouncing}>
             <div className='app-tooltip'>{name}</div>
-            <div className='app-inner'>{letter}</div>
+            <div className='app-inner'><i className={iconCode}></i></div>
             {open && <div className='app-dot'></div>}
         </StyledApp>
     );

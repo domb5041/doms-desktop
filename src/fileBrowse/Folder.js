@@ -20,6 +20,10 @@ const StyledFolder = styled.div`
         border-top-left-radius: 0;
         background-color: white;
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 22px;
         & > div {
             position: absolute;
             background-color: white;
@@ -51,6 +55,7 @@ export default function Folder({
     folder,
     setWindowOrder,
     index,
+    iconCode,
 }) {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -62,7 +67,8 @@ export default function Folder({
         <>
             <StyledFolder onDoubleClick={handleOpenFolder} index={index}>
                 <div className='folder-icon'>
-                    <div />
+                    <i className={iconCode}></i>
+                    <div></div>
                 </div>
                 <div className='folder-label'>{name}</div>
             </StyledFolder>

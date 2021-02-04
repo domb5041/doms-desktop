@@ -101,7 +101,14 @@ export default function MenuBar() {
                         }
                         active={menuItem.id === contextMenu.id}
                     >
-                        {menuItem.name}
+                        {menuItem.name === 'OS' ? (
+                            <i
+                                style={{ fontSize: '20px', padding: '0 5px' }}
+                                class='fab fa-apple'
+                            ></i>
+                        ) : (
+                            menuItem.name
+                        )}
                     </StyledMenuItem>
                 ))}
                 <div

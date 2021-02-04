@@ -47,6 +47,7 @@ export default function Desktop() {
                         windowOrder={windowOrder}
                         setWindowOrder={id => handleSetWindowOrder(id)}
                         folder={folder}
+                        iconCode={folder.iconCode}
                     />
                 ))}
             </div>
