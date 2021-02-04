@@ -21,11 +21,10 @@ const StyledDock = styled.div`
     }
 `;
 
-export default function Dock({ openMessageBox, setMessageBoxText }) {
+export default function Dock({ setMessageBox }) {
     const handleOpenMessageBox = app => {
         const text = app + ' is not installed';
-        openMessageBox();
-        setMessageBoxText(text);
+        setMessageBox(text);
     };
 
     return (

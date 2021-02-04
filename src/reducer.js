@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 const initialState = {
     messageBoxText: '',
+    messageBoxIcon: 'fa-info-circle',
     messageBoxIsOpen: false,
 };
 
@@ -12,14 +13,11 @@ export default function (state = initialState, action) {
                 messageBoxIsOpen: false,
             });
         }
-        case 'OPEN_MESSAGE_BOX': {
+        case 'SET_MESSAGE_BOX': {
             return _.assign({}, state, {
                 messageBoxIsOpen: true,
-            });
-        }
-        case 'SET_MESSAGE_BOX_TEXT': {
-            return _.assign({}, state, {
                 messageBoxText: action.text,
+                messageBoxIcon: action.icon
             });
         }
         default:

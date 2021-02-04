@@ -4,6 +4,7 @@ import actions from '../actions';
 
 const mapStateToProps = state => ({
     message: state.messageBoxText,
+    icon: state.messageBoxIcon,
     isOpen: state.messageBoxIsOpen,
 });
 

@@ -2,11 +2,9 @@ export default {
     closeMessageBox: () => ({
         type: 'CLOSE_MESSAGE_BOX',
     }),
-    openMessageBox: () => ({
-        type: 'OPEN_MESSAGE_BOX',
-    }),
-    setMessageBoxText: text => ({
-        type: 'SET_MESSAGE_BOX_TEXT',
+    setMessageBox: (text, icon) => ({
+        type: 'SET_MESSAGE_BOX',
         text: text,
+        icon: icon || 'fas fa-info-circle'
     }),
 };

@@ -15,9 +15,13 @@ const StyledMessageBox = styled.div`
     transform: translate(-50%, -50%);
     text-align: center;
     padding: 10px;
+    & > i {
+        font-size: 40px;
+        margin: 15px 0;
+    }
     & .message-block {
         margin: 10px 0;
-        min-height: 100px;
+        min-height: 50px;
         user-select: none;
     }
     & .message-confirm {
@@ -77,7 +81,7 @@ const StyledShade = styled.div`
     }
 `;
 
-export default function MessageBox({ isOpen, close, message }) {
+export default function MessageBox({ isOpen, close, message, icon }) {
     return (
         <>
             <CSSTransition
@@ -87,6 +91,7 @@ export default function MessageBox({ isOpen, close, message }) {
                 classNames='messagebox'
             >
                 <StyledMessageBox>
+                    <i className={icon}></i>
                     <div className='message-block'>{message}</div>
                     <div className='message-confirm' onClick={close}>
                         Ok

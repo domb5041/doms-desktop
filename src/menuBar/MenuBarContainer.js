@@ -3,8 +3,7 @@ import actions from '../actions';
 import MenuBar from './MenuBar';
 
 const mapDispatchToProps = dispatch => ({
-    openMessageBox: () => dispatch(actions.openMessageBox()),
-    setMessageBoxText: text => dispatch(actions.setMessageBoxText(text)),
+    setMessageBox: text => dispatch(actions.setMessageBox(text)),
 });
 
 export default connect(null, mapDispatchToProps)(MenuBar);

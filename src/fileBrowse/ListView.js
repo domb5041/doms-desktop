@@ -75,7 +75,7 @@ const StyledFile = styled.div`
     }
 `;
 
-export default function ListView({ files, openMessageBox, setMessageBoxText }) {
+export default function ListView({ files, setMessageBox }) {
     const [activeFile, setActiveFile] = useState(null);
     const [files2, setFiles2] = useState(files);
     const [sortBy, setSortBy] = useState([null, false]);
@@ -117,8 +117,7 @@ export default function ListView({ files, openMessageBox, setMessageBoxText }) {
 
     const handleOpenMessageBox = fileName => {
         const text = fileName + " couldn't be found";
-        openMessageBox();
-        setMessageBoxText(text);
+        setMessageBox(text);
     };
 
     return (
