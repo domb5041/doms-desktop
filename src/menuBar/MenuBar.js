@@ -61,7 +61,7 @@ const StyledHiddenClose = styled.div`
     z-index: 4000;
 `;
 
-export default function MenuBar() {
+export default function MenuBar({openMessageBox, setMessageBoxText}) {
     const [contextMenu, setContextMenu] = useState({
         id: '',
         top: 0,
@@ -84,6 +84,12 @@ export default function MenuBar() {
             id: '',
         });
     };
+
+    const handleContextClick = () => {
+        closeMenu();
+        openMessageBox();
+        setMessageBoxText('there was an error');
+    }
 
     return (
         <>
@@ -131,7 +137,7 @@ export default function MenuBar() {
                         ].items.map(item => (
                             <>
                                 {item.type === 'button' && (
-                                    <StyledContextMenuItem>
+                                    <StyledContextMenuItem onClick={handleContextClick}>
                                         {item.name}
                                     </StyledContextMenuItem>
                                 )}
