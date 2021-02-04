@@ -14,7 +14,7 @@ const StyledMessageBox = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    padding: 10px;
+    padding: 10px 20px;
     & > i {
         font-size: 40px;
         margin: 15px 0;

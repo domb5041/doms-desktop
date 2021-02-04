@@ -7,6 +7,17 @@ const randomErrors = [
     { text: "This doesn't do anything yet.", icon: 'fas fa-cat' },
     { text: 'FATAL ERROR', icon: 'fas fa-skull-crossbones' },
     { text: 'Closed for cleaning', icon: 'fas fa-soap' },
+    { text: 'Closed for cleaning', icon: 'fas fa-soap' },
+    { text: '&*?%*!$%!!!', icon: 'fas fa-angry' },
+    {
+        text: 'This feature needs charging before use.',
+        icon: 'fas fa-battery-quarter',
+    },
+    { text: 'This is a feature, not a bug.', icon: 'fas fa-bug' },
+    {
+        text: 'This button was uploaded to the cloud and lost forever.',
+        icon: 'fas fa-cloud-upload-alt',
+    },
 ];
 
 export default {
