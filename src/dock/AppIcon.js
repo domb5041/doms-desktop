@@ -80,7 +80,7 @@ export default function AppIcon({ name, open, onClick, letter }) {
     };
 
     return (
-        <StyledApp onClick={handleClick} bouncing={bouncing}>
+        <StyledApp onClick={open ? null : handleClick} bouncing={bouncing}>
             <div className='app-tooltip'>{name}</div>
             <div className='app-inner'>{letter}</div>
             {open && <div className='app-dot'></div>}
