@@ -140,24 +140,23 @@ export default function ListView({ files, randomMessageBox }) {
             </StyledListHeader>
             <StyledFiles>
                 {files2.map((file, i) => (
-                    <>
-                        <StyledFile
-                            evenRow={i % 2 === 0}
-                            onClick={() => setActiveFile(file.id)}
-                            onDoubleClick={randomMessageBox}
-                            activeFile={file.id === activeFile}
-                        >
-                            <div>{file.name}</div>
-                            <div>
-                                {formatDate(
-                                    file.dateModified,
-                                    'dd mmm yyyy at hh:mm'
-                                )}
-                            </div>
-                            <div>{formatBytes(file.size)}</div>
-                            <div>{file.type}</div>
-                        </StyledFile>
-                    </>
+                    <StyledFile
+                        evenRow={i % 2 === 0}
+                        onClick={() => setActiveFile(file.id)}
+                        onDoubleClick={randomMessageBox}
+                        activeFile={file.id === activeFile}
+                        key={i}
+                    >
+                        <div>{file.name}</div>
+                        <div>
+                            {formatDate(
+                                file.dateModified,
+                                'dd mmm yyyy at hh:mm'
+                            )}
+                        </div>
+                        <div>{formatBytes(file.size)}</div>
+                        <div>{file.type}</div>
+                    </StyledFile>
                 ))}
             </StyledFiles>
         </StyledListView>

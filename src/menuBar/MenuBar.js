@@ -93,7 +93,7 @@ export default function MenuBar({randomMessageBox}) {
     return (
         <>
             <StyledMenuBar>
-                {menuItems.map(menuItem => (
+                {menuItems.map((menuItem, i) => (
                     <StyledMenuItem
                         id={menuItem.id}
                         onClick={
@@ -105,6 +105,7 @@ export default function MenuBar({randomMessageBox}) {
                             contextMenu.id ? () => openMenu(menuItem.id) : null
                         }
                         active={menuItem.id === contextMenu.id}
+                        key={i}
                     >
                         {menuItem.name === 'OS' ? (
                             <i
