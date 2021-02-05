@@ -108,8 +108,8 @@ export default function MenuBar({randomMessageBox}) {
                     >
                         {menuItem.name === 'OS' ? (
                             <i
-                                style={{ fontSize: '20px', padding: '0 5px' }}
-                                class='fab fa-apple'
+                                style={{ fontSize: '18px', padding: '0 5px' }}
+                                className='fas fa-apple-alt'
                             ></i>
                         ) : (
                             menuItem.name
